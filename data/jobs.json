@@ -1,0 +1,57 @@
+{
+	"today": [
+		{
+			"title": "Frontend Developer",
+			"company": "Directus",
+			"location": "Remote, Anywhere",
+			"date": "July 12",
+			"letter": "D"
+		},
+		{
+			"title": "JavaScript Developer",
+			"company": "Kinsta",
+			"location": "Remote, Anywhere",
+			"date": "July 12",
+			"letter": "K"
+		}
+	],
+	"week": [
+		{
+			"title": "Network Engineer",
+			"company": "Cisco",
+			"location": "LA, United States",
+			"date": "July 11",
+			"letter": "C"
+		},
+		{
+			"title": "Backend Developer",
+			"company": "WP Engine",
+			"location": "United Kingdom",
+			"date": "July 10",
+			"letter": "W"
+		}
+	],
+	"month": [
+		{
+			"title": "React Developer",
+			"company": "Affiniti",
+			"location": "Lahore, Pakistan",
+			"date": "July 8",
+			"letter": "A"
+		},
+		{
+			"title": "Fullstack Developer",
+			"company": "Confiz",
+			"location": "Lahore, Pakistan",
+			"date": "July 5",
+			"letter": "C"
+		},
+		{
+			"title": "Frontend Developer",
+			"company": "Amondo",
+			"location": "Remote, Anywhere",
+			"date": "July 3",
+			"letter": "A"
+		}
+	]
+}
