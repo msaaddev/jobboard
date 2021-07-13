@@ -1,8 +1,25 @@
-import styles from '../../styles/nav.module.css';
 import Image from 'next/image';
 import Link from 'next/link';
+import { useContext } from 'react';
+import { AuthContext } from '../context/AuthContext';
+import styles from '../../styles/nav.module.css';
 
 const Nav = () => {
+	const [
+		user,
+		setUser,
+		email,
+		setEmail,
+		password,
+		setPassword,
+		emailErr,
+		setEmailErr,
+		passwordErr,
+		setPasswordErr,
+		hasSignedIn,
+		setHasSignedIn
+	] = useContext(AuthContext);
+	console.log('has', hasSignedIn);
 	return (
 		<div className={styles.container}>
 			<div className={styles.main_container}>
@@ -30,11 +47,19 @@ const Nav = () => {
 						</div>
 					</Link>
 					<div>
-						<Link href="/hire">
-							<a>
-								<button>Post a Job</button>
-							</a>
-						</Link>
+						{hasSignedIn ? (
+							<Link href="/hire">
+								<a>
+									<button>Post a Job</button>
+								</a>
+							</Link>
+						) : (
+							<Link href="/login">
+								<a>
+									<button>Post a Job</button>
+								</a>
+							</Link>
+						)}
 					</div>
 				</div>
 			</div>

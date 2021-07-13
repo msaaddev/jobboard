@@ -4,11 +4,11 @@ import Layout from '../components/Layout';
 
 function MyApp({ Component, pageProps }) {
 	return (
-		<Layout>
-			<AuthProvider>
+		<AuthProvider>
+			<Layout>
 				<Component {...pageProps} />
-			</AuthProvider>
-		</Layout>
+			</Layout>
+		</AuthProvider>
 	);
 }
 

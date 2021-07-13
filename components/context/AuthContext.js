@@ -8,6 +8,7 @@ const AuthProvider = ({ children }) => {
 	const [password, setPassword] = useState('');
 	const [emailErr, setEmailErr] = useState('');
 	const [passwordErr, setPasswordErr] = useState('');
+	const [hasSignedIn, setHasSignedIn] = useState(false);
 
 	return (
 		<AuthContext.Provider
@@ -21,7 +22,9 @@ const AuthProvider = ({ children }) => {
 				emailErr,
 				setEmailErr,
 				passwordErr,
-				setPasswordErr
+				setPasswordErr,
+				hasSignedIn,
+				setHasSignedIn
 			]}
 		>
 			{children}

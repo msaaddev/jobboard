@@ -16,7 +16,9 @@ const Login = () => {
 		emailErr,
 		setEmailErr,
 		passwordErr,
-		setPasswordErr
+		setPasswordErr,
+		hasSignedIn,
+		setHasSignedIn
 	] = useContext(AuthContext);
 	const router = useRouter();
 
@@ -52,6 +54,7 @@ const Login = () => {
 			.signInWithEmailAndPassword(email, password)
 			.then(() => {
 				router.push('/');
+				setHasSignedIn(true);
 			})
 			.catch((err) => {
 				const { code, message } = err;
