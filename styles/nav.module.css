@@ -1,7 +1,8 @@
 /* styles */
 
 .container {
-	height: 80px;
+	height: 90px;
+	border-bottom: solid 1px #e1edf8;
 }
 
 .main_container {
@@ -27,14 +28,19 @@
     border: none;
     border-radius: 5px;
     transition: 0.5s;
-    box-shadow: 0 5px 10px #363636;
     background-size: 200% auto;
     color: #ffffff;
-    background-image: linear-gradient(to right, #3f3f3f 0%, #353535 51%, #000000 100%);
+    background: radial-gradient(
+		ellipse at left bottom,
+		rgba(22, 24, 47, 1) 0%,
+		rgba(38, 20, 72, 0.9) 59%,
+		rgba(17, 27, 75, 0.9) 100%
+	);
+	box-shadow: 0 5px 10px  rgba(17, 27, 75, 0.9);
 }
 
 .links_container button:hover {
-    box-shadow: 0 0 10px #3a3a3a;
+    box-shadow: 0 0px 10px  rgba(17, 27, 75, 0.9);
     color: #ffffff;
     background-position: right center;
     cursor: pointer;
@@ -42,6 +48,7 @@
 
 .links {
 	color: #5a5a5a;
+    font-weight: 500;
 	transition: 0.5s all;
 	padding: 6px;
 }

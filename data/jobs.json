@@ -13,6 +13,13 @@
 			"location": "Remote, Anywhere",
 			"date": "July 12",
 			"letter": "K"
+		},
+		{
+			"title": "Backend Developer",
+			"company": "Kinsta",
+			"location": "Remote, Anywhere",
+			"date": "July 12",
+			"letter": "K"
 		}
 	],
 	"week": [
@@ -28,6 +35,13 @@
 			"company": "WP Engine",
 			"location": "United Kingdom",
 			"date": "July 10",
+			"letter": "W"
+		},
+		{
+			"title": "Backend Developer",
+			"company": "Xome Company",
+			"location": "United Kingdom",
+			"date": "July 9",
 			"letter": "W"
 		}
 	],

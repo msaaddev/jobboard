@@ -7,26 +7,34 @@ const Nav = () => {
 		<div className={styles.container}>
 			<div className={styles.main_container}>
 				<div className={styles.img_container}>
-					<Image
-						src="/logo.png"
-						alt="jobboard"
-						width={200}
-						height={70}
-					/>
+					<Link href="/">
+						<a>
+							<Image
+								src="/logo.png"
+								alt="jobboard"
+								width={200}
+								height={70}
+							/>
+						</a>
+					</Link>
 				</div>
 				<div className={styles.links_container}>
 					<div className={styles.links}>
-						<Link href="/">
+						<Link href="/login">
 							<a>Login</a>
 						</Link>
 					</div>
 					<div className={styles.links}>
-						<Link href="/">
+						<Link href="/signup">
 							<a>Sign Up</a>
 						</Link>
 					</div>
 					<div>
-						<button>Post a Job</button>
+						<Link href="/hire">
+							<a>
+								<button>Post a Job</button>
+							</a>
+						</Link>
 					</div>
 				</div>
 			</div>
