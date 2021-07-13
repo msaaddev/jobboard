@@ -19,16 +19,16 @@ const Nav = () => {
 					</Link>
 				</div>
 				<div className={styles.links_container}>
-					<div className={styles.links}>
-						<Link href="/login">
+					<Link href="/login">
+						<div className={styles.links}>
 							<a>Login</a>
-						</Link>
-					</div>
-					<div className={styles.links}>
-						<Link href="/signup">
+						</div>
+					</Link>
+					<Link href="/signup">
+						<div className={styles.links}>
 							<a>Sign Up</a>
-						</Link>
-					</div>
+						</div>
+					</Link>
 					<div>
 						<Link href="/hire">
 							<a>
