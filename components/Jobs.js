@@ -10,7 +10,10 @@ const Jobs = ({ day, jobs }) => {
 			<div className={styles.jobs}>
 				{jobs.map((job) => {
 					return (
-						<div className={styles.job_container}>
+						<div
+							className={styles.job_container}
+							key={Math.random() * 10000}
+						>
 							<p className={styles.initial}>{job.letter}</p>
 							<div className={styles.job_info}>
 								<div className={styles.title_wrapper}>
