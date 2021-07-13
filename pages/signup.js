@@ -1,15 +1,24 @@
-import { useState, useEffect } from 'react';
+import { useEffect, useContext } from 'react';
 import Link from 'next/link';
+import { useRouter } from 'next/router';
+import { AuthContext } from '../components/context/AuthContext';
 import fire from '../utils/firebase';
-import styles from '../styles/authentication.module.css';
+import styles from '../styles/auth.module.css';
 
 const SignUp = () => {
-	const [user, setUser] = useState('');
-	const [email, setEmail] = useState('');
-	const [password, setPassword] = useState('');
-	const [emailErr, setEmailErr] = useState('');
-	const [passwordErr, setPasswordErr] = useState('');
-	const [hasAccount, setHasAccount] = useState(false);
+	const [
+		user,
+		setUser,
+		email,
+		setEmail,
+		password,
+		setPassword,
+		emailErr,
+		setEmailErr,
+		passwordErr,
+		setPasswordErr
+	] = useContext(AuthContext);
+	const router = useRouter();
 
 	/**
 	 *
@@ -34,56 +43,30 @@ const SignUp = () => {
 	/**
 	 *
 	 *
-	 * logs in the systems
-	 */
-	const handleLogin = async () => {
-		clearErrs();
-		try {
-			const { signInWithEmailAndPassword } = fire.auth();
-
-			await signInWithEmailAndPassword(email, password);
-		} catch (err) {
-			const { code, msg } = err;
-
-			if (
-				code === 'auth/invalid-email' ||
-				code === 'auth/user-disabled' ||
-				code === 'auth/user-not-found'
-			) {
-				setEmailErr(msg);
-			}
-
-			if (code === 'auth/wrong-password') {
-				setPasswordErr(msg);
-			}
-		}
-	};
-
-	/**
-	 *
-	 *
 	 * sign up a new user
 	 */
 	const handleSignUp = async () => {
 		clearErrs();
-		try {
-			const { createUserWithEmailAndPassword } = fire.auth();
 
-			await createUserWithEmailAndPassword(email, password);
-		} catch (err) {
-			const { code, msg } = err;
+		fire.auth()
+			.createUserWithEmailAndPassword(email, password)
+			.then(() => {
+				router.push('/');
+			})
+			.catch((err) => {
+				const { code, message } = err;
 
-			if (
-				code === 'auth/email-already-in-use' ||
-				code === 'auth/invalid-email'
-			) {
-				setEmailErr(msg);
-			}
+				if (
+					code === 'auth/email-already-in-use' ||
+					code === 'auth/invalid-email'
+				) {
+					setEmailErr(message);
+				}
 
-			if (code === 'auth/weak-password') {
-				setPasswordErr(msg);
-			}
-		}
+				if (code === 'auth/weak-password') {
+					setPasswordErr(message);
+				}
+			});
 	};
 
 	/**
@@ -122,18 +105,31 @@ const SignUp = () => {
 					<label htmlFor="email" className={styles.label}>
 						Email
 					</label>
-					<input type="email" className={styles.input} />
+					<input
+						type="email"
+						autoFocus
+						required
+						value={email}
+						onChange={(e) => setEmail(e.target.value)}
+						className={styles.input}
+					/>
 					{emailErr !== '' && <p className={styles.err}></p>}
 				</div>
 				<div className={styles.password}>
 					<label htmlFor="password" className={styles.label}>
 						Password
 					</label>
-					<input type="password" className={styles.input} />
+					<input
+						type="password"
+						required
+						value={password}
+						onChange={(e) => setPassword(e.target.value)}
+						className={styles.input}
+					/>
 					{passwordErr !== '' && <p className={styles.err}></p>}
 				</div>
 				<div className={styles.signup}>
-					<button>Sign Up</button>
+					<button onClick={handleSignUp}>Sign Up</button>
 				</div>
 				<div className={styles.msg}>
 					<p>
