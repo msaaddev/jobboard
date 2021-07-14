@@ -48,32 +48,17 @@
 
 .links {
 	color: #5a5a5a;
+	margin: 0.5rem 3rem;
     font-weight: 500;
 	transition: 0.5s all;
 	padding: 6px;
 }
 
-
-.links:nth-child(1) {
-	margin: 0.5rem 0.5rem;
-}
-
 .links:nth-child(2) {
-	margin: 0.5rem 3rem;
+	margin: 0.5rem 3rem 0.5rem 0;
 }
 
 .links:hover {
 	cursor: pointer;
 	border-bottom: solid 1px #000000;
 }
-
-
-
-
-/*
-#2962ff
-#42a5f5
-#2196f3
-#2962ff
-#64b5f6
-*/

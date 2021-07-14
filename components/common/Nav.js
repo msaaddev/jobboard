@@ -2,10 +2,21 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { useContext } from 'react';
 import { AuthContext } from '../context/AuthContext';
+import fire from '../../utils/firebase';
 import styles from '../../styles/nav.module.css';
 
 const Nav = () => {
-	const { hasSignedIn } = useContext(AuthContext);
+	const { setHasSignedIn, hasSignedIn } = useContext(AuthContext);
+
+	/**
+	 *
+	 *
+	 * log out user from the system
+	 */
+	const handleLogout = () => {
+		fire.auth().signOut();
+		setHasSignedIn(false);
+	};
 
 	return (
 		<div className={styles.container}>
@@ -23,16 +34,30 @@ const Nav = () => {
 					</Link>
 				</div>
 				<div className={styles.links_container}>
-					<Link href="/login">
-						<div className={styles.links}>
-							<a>Login</a>
-						</div>
-					</Link>
-					<Link href="/signup">
-						<div className={styles.links}>
-							<a>Sign Up</a>
-						</div>
-					</Link>
+					{!hasSignedIn ? (
+						<>
+							<Link href="/login">
+								<div className={styles.links}>
+									<a>Login</a>
+								</div>
+							</Link>
+							<Link href="/signup">
+								<div className={styles.links}>
+									<a>Sign Up</a>
+								</div>
+							</Link>
+						</>
+					) : (
+						<Link href="/">
+							<div
+								className={styles.links}
+								onClick={handleLogout}
+							>
+								<a>Logout</a>
+							</div>
+						</Link>
+					)}
+
 					<div>
 						{hasSignedIn ? (
 							<Link href="/hire">
