@@ -2,6 +2,9 @@ import { useEffect, useContext } from 'react';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 import { AuthContext } from '../components/context/AuthContext';
+import Input from '../components/common/Input';
+import HelperMsg from '../components/common/HelperMsg';
+import Button from '../components/common/Button';
 import fire from '../utils/firebase';
 import styles from '../styles/auth.module.css';
 
@@ -45,7 +48,7 @@ const SignUp = () => {
 		fire.auth()
 			.createUserWithEmailAndPassword(email, password)
 			.then(() => {
-				router.push('/login');
+				router.push('/info');
 			})
 			.catch((err) => {
 				const { code, message } = err;
@@ -61,15 +64,6 @@ const SignUp = () => {
 					setPasswordErr(message);
 				}
 			});
-	};
-
-	/**
-	 *
-	 *
-	 * log out user from the system
-	 */
-	const handleLogout = () => {
-		fire.auth().signOut();
 	};
 
 	/**
@@ -98,46 +92,30 @@ const SignUp = () => {
 	return (
 		<div className={styles.container}>
 			<div className={styles.subcontainer}>
-				<div className={styles.email}>
-					<label htmlFor="email" className={styles.label}>
-						Email
-					</label>
-					<input
-						type="email"
-						autoFocus
-						required
-						value={email}
-						onChange={(e) => setEmail(e.target.value)}
-						className={styles.input}
-					/>
-					{emailErr !== '' && <p className={styles.err}></p>}
-				</div>
-				<div className={styles.password}>
-					<label htmlFor="password" className={styles.label}>
-						Password
-					</label>
-					<input
-						type="password"
-						required
-						value={password}
-						onChange={(e) => setPassword(e.target.value)}
-						className={styles.input}
-					/>
-					{passwordErr !== '' && <p className={styles.err}></p>}
-				</div>
-				<div className={styles.signup}>
-					<button onClick={handleSignUp}>Sign Up</button>
-				</div>
-				<div className={styles.msg}>
-					<p>
-						Already have an account?{' '}
-						<span>
-							<Link href="/login">
-								<a>Sign in</a>
-							</Link>
-						</span>
-					</p>
-				</div>
+				<Input
+					htmlFor="email"
+					label="Email"
+					type="email"
+					autoFocus={true}
+					value={email}
+					handleOnChange={setEmail}
+					err={emailErr}
+				/>
+				<Input
+					htmlFor="password"
+					label="Password"
+					type="password"
+					autoFocus={false}
+					value={password}
+					handleOnChange={setPassword}
+					err={passwordErr}
+				/>
+				<Button label="Sign Up" onClick={handleSignUp} />
+				<HelperMsg
+					content="Already have an account?"
+					option="Sign in"
+					url="login"
+				/>
 			</div>
 		</div>
 	);

@@ -3,6 +3,9 @@ import Link from 'next/link';
 import { useRouter } from 'next/router';
 import { AuthContext } from '../components/context/AuthContext';
 import fire from '../utils/firebase';
+import Input from '../components/common/Input';
+import HelperMsg from '../components/common/HelperMsg';
+import Button from '../components/common/Button';
 import styles from '../styles/auth.module.css';
 
 const Login = () => {
@@ -91,50 +94,30 @@ const Login = () => {
 	return (
 		<div className={styles.container}>
 			<div className={styles.subcontainer}>
-				<div className={styles.email}>
-					<label htmlFor="email" className={styles.label}>
-						Email
-					</label>
-					<input
-						type="email"
-						autoFocus
-						required
-						value={email}
-						onChange={(e) => setEmail(e.target.value)}
-						className={styles.input}
-					/>
-					{emailErr !== '' && (
-						<p className={styles.err}>{emailErr}</p>
-					)}
-				</div>
-				<div className={styles.password}>
-					<label htmlFor="password" className={styles.label}>
-						Password
-					</label>
-					<input
-						type="password"
-						required
-						value={password}
-						onChange={(e) => setPassword(e.target.value)}
-						className={styles.input}
-					/>
-					{passwordErr !== '' && (
-						<p className={styles.err}>{passwordErr}</p>
-					)}
-				</div>
-				<div className={styles.signup}>
-					<button onClick={handleLogin}>Login</button>
-				</div>
-				<div className={styles.msg}>
-					<p>
-						Don't have an account?{' '}
-						<span>
-							<Link href="/signup">
-								<a>Sign Up</a>
-							</Link>
-						</span>
-					</p>
-				</div>
+				<Input
+					htmlFor="email"
+					label="Email"
+					type="email"
+					autoFocus={true}
+					value={email}
+					handleOnChange={setEmail}
+					err={emailErr}
+				/>
+				<Input
+					htmlFor="password"
+					label="Password"
+					type="password"
+					autoFocus={false}
+					value={password}
+					handleOnChange={setPassword}
+					err={passwordErr}
+				/>
+				<Button label="Login" onClick={handleLogin} />
+				<HelperMsg
+					content="Don't have an account?"
+					option="Sign Up"
+					url="signup"
+				/>
 			</div>
 		</div>
 	);
