@@ -13,7 +13,7 @@
 	font-weight: 500;
 }
 
-.input {
+.input, .container select {
 	width: 100%;
 	border: none;
 	outline: none;
