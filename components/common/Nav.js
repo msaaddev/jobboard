@@ -48,14 +48,24 @@ const Nav = () => {
 							</Link>
 						</>
 					) : (
-						<Link href="/">
-							<div
-								className={styles.links}
-								onClick={handleLogout}
-							>
-								<a>Logout</a>
-							</div>
-						</Link>
+						<>
+							<Link href="/dashboard">
+								<div
+									className={styles.links}
+									onClick={handleLogout}
+								>
+									<a>Dashboard</a>
+								</div>
+							</Link>
+							<Link href="/">
+								<div
+									className={styles.links}
+									onClick={handleLogout}
+								>
+									<a>Logout</a>
+								</div>
+							</Link>
+						</>
 					)}
 
 					<div>

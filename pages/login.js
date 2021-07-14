@@ -45,7 +45,7 @@ const Login = () => {
 		fire.auth()
 			.signInWithEmailAndPassword(email, password)
 			.then(() => {
-				router.push('/');
+				router.push('/dashboard');
 				setHasSignedIn(true);
 			})
 			.catch((err) => {
@@ -84,7 +84,7 @@ const Login = () => {
 	useEffect(() => {
 		authListener();
 		if (hasSignedIn) {
-			router.push('/');
+			router.push('/dashboard');
 		}
 	}, []);
 
