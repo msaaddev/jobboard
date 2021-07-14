@@ -1,5 +1,4 @@
 import { useEffect, useContext } from 'react';
-import Link from 'next/link';
 import { useRouter } from 'next/router';
 import { AuthContext } from '../components/context/AuthContext';
 import fire from '../utils/firebase';
@@ -107,7 +106,6 @@ const Login = () => {
 					htmlFor="password"
 					label="Password"
 					type="password"
-					autoFocus={false}
 					value={password}
 					handleOnChange={setPassword}
 					err={passwordErr}
