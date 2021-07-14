@@ -45,7 +45,7 @@ const SignUp = () => {
 		fire.auth()
 			.createUserWithEmailAndPassword(email, password)
 			.then(() => {
-				router.push('/');
+				router.push('/login');
 			})
 			.catch((err) => {
 				const { code, message } = err;
