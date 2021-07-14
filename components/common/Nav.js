@@ -5,21 +5,8 @@ import { AuthContext } from '../context/AuthContext';
 import styles from '../../styles/nav.module.css';
 
 const Nav = () => {
-	const [
-		user,
-		setUser,
-		email,
-		setEmail,
-		password,
-		setPassword,
-		emailErr,
-		setEmailErr,
-		passwordErr,
-		setPasswordErr,
-		hasSignedIn,
-		setHasSignedIn
-	] = useContext(AuthContext);
-	console.log('has', hasSignedIn);
+	const { hasSignedIn } = useContext(AuthContext);
+
 	return (
 		<div className={styles.container}>
 			<div className={styles.main_container}>

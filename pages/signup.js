@@ -6,18 +6,11 @@ import fire from '../utils/firebase';
 import styles from '../styles/auth.module.css';
 
 const SignUp = () => {
-	const [
-		user,
-		setUser,
-		email,
-		setEmail,
-		password,
-		setPassword,
-		emailErr,
-		setEmailErr,
-		passwordErr,
-		setPasswordErr
-	] = useContext(AuthContext);
+	const { user, setUser } = useContext(AuthContext);
+	const { email, setEmail } = useContext(AuthContext);
+	const { password, setPassword } = useContext(AuthContext);
+	const { emailErr, setEmailErr } = useContext(AuthContext);
+	const { passwordErr, setPasswordErr } = useContext(AuthContext);
 	const router = useRouter();
 
 	/**

@@ -12,7 +12,7 @@ const AuthProvider = ({ children }) => {
 
 	return (
 		<AuthContext.Provider
-			value={[
+			value={{
 				user,
 				setUser,
 				email,
@@ -25,7 +25,7 @@ const AuthProvider = ({ children }) => {
 				setPasswordErr,
 				hasSignedIn,
 				setHasSignedIn
-			]}
+			}}
 		>
 			{children}
 		</AuthContext.Provider>
