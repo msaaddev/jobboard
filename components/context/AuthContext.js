@@ -8,6 +8,7 @@ const AuthProvider = ({ children }) => {
 	const [password, setPassword] = useState('');
 	const [emailErr, setEmailErr] = useState('');
 	const [passwordErr, setPasswordErr] = useState('');
+	const [isOrg, setIsOrg] = useState(true);
 	const [hasSignedIn, setHasSignedIn] = useState(false);
 
 	return (
@@ -23,6 +24,8 @@ const AuthProvider = ({ children }) => {
 				setEmailErr,
 				passwordErr,
 				setPasswordErr,
+				isOrg,
+				setIsOrg,
 				hasSignedIn,
 				setHasSignedIn
 			}}

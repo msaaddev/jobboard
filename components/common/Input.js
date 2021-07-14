@@ -7,23 +7,40 @@ const Input = ({
 	autoFocus = false,
 	value,
 	handleOnChange,
-	err
+	err,
+	dropdown = false
 }) => {
 	return (
 		<>
 			<div className={styles.container}>
-				<label htmlFor={htmlFor} className={styles.label}>
-					{label}
-				</label>
-				<input
-					type={type}
-					autoFocus={autoFocus}
-					required
-					value={value}
-					onChange={(e) => handleOnChange(e.target.value)}
-					className={styles.input}
-				/>
-				{err !== '' && <p className={styles.err}>{err}</p>}
+				{!dropdown ? (
+					<>
+						<label htmlFor={htmlFor} className={styles.label}>
+							{label}
+						</label>
+						<input
+							type={type}
+							autoFocus={autoFocus}
+							required
+							value={value}
+							onChange={(e) => handleOnChange(e.target.value)}
+							className={styles.input}
+						/>
+						{err !== '' && <p className={styles.err}>{err}</p>}
+					</>
+				) : (
+					<>
+						<label htmlFor={htmlFor} className={styles.label}>
+							{label}
+						</label>
+						<select
+							onChange={(e) => handleOnChange(e.target.value)}
+						>
+							<option value={true}>Yes</option>
+							<option value={false}>No</option>
+						</select>
+					</>
+				)}
 			</div>
 		</>
 	);

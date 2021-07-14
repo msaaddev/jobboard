@@ -1,5 +1,4 @@
 import { useEffect, useContext } from 'react';
-import Link from 'next/link';
 import { useRouter } from 'next/router';
 import { AuthContext } from '../components/context/AuthContext';
 import Input from '../components/common/Input';
@@ -14,6 +13,7 @@ const SignUp = () => {
 	const { password, setPassword } = useContext(AuthContext);
 	const { emailErr, setEmailErr } = useContext(AuthContext);
 	const { passwordErr, setPasswordErr } = useContext(AuthContext);
+	const { setIsOrg } = useContext(AuthContext);
 	const { hasSignedIn } = useContext(AuthContext);
 	const router = useRouter();
 
@@ -48,7 +48,7 @@ const SignUp = () => {
 		fire.auth()
 			.createUserWithEmailAndPassword(email, password)
 			.then(() => {
-				router.push('/info');
+				router.push('/login');
 			})
 			.catch((err) => {
 				const { code, message } = err;
@@ -105,10 +105,16 @@ const SignUp = () => {
 					htmlFor="password"
 					label="Password"
 					type="password"
-					autoFocus={false}
 					value={password}
-					handleOnChange={setPassword}
+					handleOnChange={setIsOrg}
 					err={passwordErr}
+				/>
+				<Input
+					htmlFor="isOrg"
+					label="Are you signing up as a company?"
+					type="text"
+					dropdown={true}
+					handleOnChange={setIsOrg}
 				/>
 				<Button label="Sign Up" onClick={handleSignUp} />
 				<HelperMsg
