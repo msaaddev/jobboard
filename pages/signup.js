@@ -11,6 +11,7 @@ const SignUp = () => {
 	const { password, setPassword } = useContext(AuthContext);
 	const { emailErr, setEmailErr } = useContext(AuthContext);
 	const { passwordErr, setPasswordErr } = useContext(AuthContext);
+	const { hasSignedIn } = useContext(AuthContext);
 	const router = useRouter();
 
 	/**
@@ -89,6 +90,9 @@ const SignUp = () => {
 
 	useEffect(() => {
 		authListener();
+		if (hasSignedIn) {
+			router.push('/');
+		}
 	}, []);
 
 	return (

@@ -83,6 +83,9 @@ const Login = () => {
 
 	useEffect(() => {
 		authListener();
+		if (hasSignedIn) {
+			router.push('/');
+		}
 	}, []);
 
 	return (
