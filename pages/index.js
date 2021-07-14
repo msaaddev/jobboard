@@ -6,9 +6,11 @@ export default function Home() {
 	return (
 		<>
 			<SEO />
-			<Jobs day="Today" jobs={jobs.today} />
-			<Jobs day="This Week" jobs={jobs.week} />
-			<Jobs day="This Month" jobs={jobs.month} />
+			{jobs.today.length > 0 && <Jobs day="Today" jobs={jobs.today} />}
+			{jobs.week.length > 0 && <Jobs day="This Week" jobs={jobs.week} />}
+			{jobs.month.length > 0 && (
+				<Jobs day="This Month" jobs={jobs.month} />
+			)}
 		</>
 	);
 }
