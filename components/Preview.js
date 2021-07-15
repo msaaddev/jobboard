@@ -23,32 +23,44 @@ const Preview = () => {
 	 * post job to homepage
 	 */
 	const handlePostJob = () => {
-		const newState = [...jobs];
-		const temp = jobs[0];
+		if (
+			jobTitle !== '' ||
+			jobTitle !== '' ||
+			jobArea !== '' ||
+			jobDescription !== '' ||
+			jobLink !== '' ||
+			companyName !== '' ||
+			companyEmail !== '' ||
+			companyWebsite !== '' ||
+			companyWebsite !== ''
+		) {
+			const newState = [...jobs];
+			const temp = jobs[0];
 
-		let id;
-		try {
-			id = temp[0].id + 1;
-		} catch (err) {
-			id = 1;
+			let id;
+			try {
+				id = temp[0].id + 1;
+			} catch (err) {
+				id = 1;
+			}
+
+			newState[0].unshift({
+				id,
+				jobTitle,
+				jobType,
+				jobArea,
+				jobLink,
+				jobDescription,
+				companyName,
+				companyEmail,
+				companyWebsite,
+				companyDescription,
+				date
+			});
+			setJobs(newState);
+
+			Router.push('/');
 		}
-
-		newState[0].unshift({
-			id,
-			jobTitle,
-			jobType,
-			jobArea,
-			jobLink,
-			jobDescription,
-			companyName,
-			companyEmail,
-			companyWebsite,
-			companyDescription,
-			date
-		});
-		setJobs(newState);
-
-		Router.push('/');
 	};
 
 	return (
