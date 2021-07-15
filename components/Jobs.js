@@ -11,6 +11,7 @@ const Jobs = ({ day, jobs }) => {
 				{jobs.map((job) => {
 					return (
 						<Job
+							letter={job.company[0]}
 							key={job.id}
 							title={job.title}
 							date={job.date}

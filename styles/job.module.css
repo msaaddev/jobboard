@@ -20,24 +20,6 @@
 	border: solid 1px #dddddd;
 }
 
-.initial {
-	width: 80px;
-	height: 80px;
-	margin-left: 20px;
-	box-shadow: 0 0 20px #e1edf8;
-	display: flex;
-	justify-content: center;
-	align-items: center;
-	font-size: 1.3rem;
-	font-family: 'Raleway', sans-serif;
-	font-weight: 600;
-	background-color: #fff;
-    -webkit-text-fill-color: transparent;
-    -webkit-background-clip: text;
-    background-clip: text;
-    background-image: linear-gradient(90deg, #4ea7f0, #0764af);
-}
-
 .job_info {
 	margin-left: 10px;
 }

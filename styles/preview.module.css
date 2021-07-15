@@ -1,1 +1,31 @@
 /* styles */
+
+.preview_container {
+	display: flex;
+	flex-direction: column;
+	border: solid 1px #e1edf8;
+	align-items: center;
+	color: #5a5a5a;
+}
+
+.initial_wrapper {
+	margin-top: 40px;
+}
+
+.preview_container a {
+	text-decoration: underline;
+}
+
+.side_info {
+	width: 600px;
+}
+
+.description {
+	width: 600px;
+	line-height: 20px;
+	text-align: justify;
+}
+
+.btn {
+	margin: 20px 0 43px 0;
+}

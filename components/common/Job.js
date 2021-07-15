@@ -1,11 +1,11 @@
-import { useEffect, useState } from 'react';
 import Image from 'next/image';
+import Initial from './Initial';
 import styles from '../../styles/job.module.css';
 
 const Job = ({ letter, title, date, company, location }) => {
 	return (
 		<div className={styles.container}>
-			<p className={styles.initial}>{letter}</p>
+			<Initial letter={letter} />
 			<div className={styles.job_info}>
 				<div className={styles.title_wrapper}>
 					<p className={styles.title}>{title}</p>

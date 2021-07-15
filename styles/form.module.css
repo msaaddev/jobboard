@@ -5,10 +5,6 @@
 	flex-direction: column;
 }
 
-.display {
-	display: none;
-}
-
 .field_container p {
 	margin: 30px 0 15px 40px;
 	color: #5a5a5a;
