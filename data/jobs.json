@@ -1,48 +1,48 @@
 {
 	"today": [
 		{
-			"id": "9",
-			"title": "Frontend Developer",
-			"company": "Directus",
-			"location": "Remote, Anywhere",
+			"id": "6",
+			"jobTitle": "Frontend Developer",
+			"companyName": "Directus",
+			"jobArea": "Remote, Anywhere",
 			"date": "July 12"
 		},
 		{
-			"id": "8",
-			"title": "JavaScript Developer",
-			"company": "Kinsta",
-			"location": "Remote, Anywhere",
+			"id": "5",
+			"jobTitle": "Frontend Developer",
+			"companyName": "Directus",
+			"jobArea": "Remote, Anywhere",
 			"date": "July 12"
 		},
 		{
-			"id": "7",
-			"title": "Backend Developer",
-			"company": "Kinsta",
-			"location": "Remote, Anywhere",
+			"id": "4",
+			"jobTitle": "Frontend Developer",
+			"companyName": "Directus",
+			"jobArea": "Remote, Anywhere",
 			"date": "July 12"
 		}
 	],
 	"month": [
 		{
 			"id": "3",
-			"title": "React Developer",
-			"company": "Affiniti",
-			"location": "Lahore, Pakistan",
-			"date": "July 8"
+			"jobTitle": "Frontend Developer",
+			"companyName": "Directus",
+			"jobArea": "Remote, Anywhere",
+			"date": "July 12"
 		},
 		{
 			"id": "2",
-			"title": "Fullstack Developer",
-			"company": "Confiz",
-			"location": "Lahore, Pakistan",
-			"date": "July 5"
+			"jobTitle": "Frontend Developer",
+			"companyName": "Directus",
+			"jobArea": "Remote, Anywhere",
+			"date": "July 12"
 		},
 		{
 			"id": "1",
-			"title": "Frontend Developer",
-			"company": "Amondo",
-			"location": "Remote, Anywhere",
-			"date": "July 3"
+			"jobTitle": "Frontend Developer",
+			"companyName": "Directus",
+			"jobArea": "Remote, Anywhere",
+			"date": "July 12"
 		}
 	]
 }

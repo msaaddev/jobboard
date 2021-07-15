@@ -1,17 +1,55 @@
 import { useContext } from 'react';
+import Router from 'next/router';
 import Button from './common/Button';
 import Initial from './common/Initial';
 import { HireContext } from './context/HireContext';
+import { JobContext } from './context/JobContext';
 import styles from '../styles/preview.module.css';
 
 const Preview = () => {
 	// job contexts
-	const { jobTitle, jobType, jobArea, jobDescription, date } =
+	const { jobTitle, jobType, jobArea, jobDescription, jobLink, date } =
 		useContext(HireContext);
 
 	// company contexts
 	const { companyName, companyEmail, companyWebsite, companyDescription } =
 		useContext(HireContext);
+
+	const { jobs, setJobs } = useContext(JobContext);
+
+	/**
+	 *
+	 *
+	 * post job to homepage
+	 */
+	const handlePostJob = () => {
+		const newState = [...jobs];
+		const temp = jobs[0];
+
+		let id;
+		try {
+			id = temp[0].id + 1;
+		} catch (err) {
+			id = 1;
+		}
+
+		newState[0].unshift({
+			id,
+			jobTitle,
+			jobType,
+			jobArea,
+			jobLink,
+			jobDescription,
+			companyName,
+			companyEmail,
+			companyWebsite,
+			companyDescription,
+			date
+		});
+		setJobs(newState);
+
+		Router.push('/');
+	};
 
 	return (
 		<div className={styles.preview_container}>
@@ -47,7 +85,7 @@ const Preview = () => {
 				</div>
 			</div>
 			<div className={styles.btn}>
-				<Button label="Post Job" onChange="" />
+				<Button label="Post Job" onClick={handlePostJob} />
 			</div>
 		</div>
 	);
