@@ -112,7 +112,6 @@ const SignUp = () => {
 				<Input
 					htmlFor="isOrg"
 					label="Are you signing up as a company?"
-					type="text"
 					dropdown={true}
 					handleOnChange={setIsOrg}
 				/>
