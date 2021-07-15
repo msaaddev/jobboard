@@ -22,29 +22,6 @@
 			"date": "July 12"
 		}
 	],
-	"week": [
-		{
-			"id": "6",
-			"title": "Network Engineer",
-			"company": "Cisco",
-			"location": "LA, United States",
-			"date": "July 11"
-		},
-		{
-			"id": "5",
-			"title": "Backend Developer",
-			"company": "WP Engine",
-			"location": "United Kingdom",
-			"date": "July 10"
-		},
-		{
-			"id": "4",
-			"title": "Backend Developer",
-			"company": "Xome Company",
-			"location": "United Kingdom",
-			"date": "July 9"
-		}
-	],
 	"month": [
 		{
 			"id": "3",

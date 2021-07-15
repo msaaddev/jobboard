@@ -7,7 +7,6 @@ export default function Home() {
 		<>
 			<SEO />
 			{jobs.today.length > 0 && <Jobs day="Today" jobs={jobs.today} />}
-			{jobs.week.length > 0 && <Jobs day="This Week" jobs={jobs.week} />}
 			{jobs.month.length > 0 && (
 				<Jobs day="This Month" jobs={jobs.month} />
 			)}
