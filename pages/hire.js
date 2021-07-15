@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { HireProvider } from '../components/context/HireContext';
 import Form from '../components/Form';
+import Preview from '../components/Preview';
 import Thumbnail from '../components/Thumbnail';
 import styles from '../styles/hire.module.css';
 
@@ -9,6 +10,8 @@ const Hire = () => {
 		`${styles.create_job} + ${styles.border}`
 	);
 	const [preview, setPreview] = useState(`${styles.preview}`);
+	const [showForm, setShowForm] = useState(true);
+	const [showPreview, setShowPreview] = useState(false);
 
 	/**
 	 *
@@ -18,6 +21,8 @@ const Hire = () => {
 	const handleJobCreation = () => {
 		setCreateJob(`${styles.create_job} ${styles.border}`);
 		setPreview(`${styles.preview}`);
+		setShowForm(true);
+		setShowPreview(false);
 	};
 
 	/**
@@ -28,6 +33,8 @@ const Hire = () => {
 	const handlePreview = () => {
 		setPreview(`${styles.preview} ${styles.border}`);
 		setCreateJob(`${styles.create_job}`);
+		setShowForm(false);
+		setShowPreview(true);
 	};
 
 	return (
@@ -50,7 +57,8 @@ const Hire = () => {
 								<h3>Preview</h3>
 							</div>
 						</div>
-						<Form />
+						{showForm && <Form onClick={handlePreview} />}
+						{showPreview && <Preview />}
 					</div>
 				</div>
 				<Thumbnail />

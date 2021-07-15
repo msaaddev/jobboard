@@ -4,7 +4,7 @@ import Input from '../components/common/Input';
 import Button from '../components/common/Button';
 import styles from '../styles/form.module.css';
 
-const Form = () => {
+const Form = ({ onClick }) => {
 	// job contexts
 	const { jobTitle, setJobTitle } = useContext(HireContext);
 	const { jobType, setJobType } = useContext(HireContext);
@@ -134,7 +134,7 @@ const Form = () => {
 					mediumMargin={true}
 				/>
 				<div className={styles.btn}>
-					<Button label="Preview" onClick="" />
+					<Button label="Preview" onClick={onClick} />
 				</div>
 			</div>
 		</div>

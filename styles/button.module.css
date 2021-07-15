@@ -20,6 +20,6 @@
 	transition: 0.5s all;
 }
 
-.signup button:hover {
+.container button:hover {
 	box-shadow: 0 0px 10px rgba(17, 27, 75, 0.9);
 }
