@@ -4,3 +4,92 @@
 	display: flex;
 	justify-content: center;
 }
+
+.sub_container {
+	width: 700px;
+}
+
+.tagline {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+}
+
+.tagline h2 {
+	font-size: 2rem;
+	font-weight: 900;
+	font-family: 'Raleway', sans-serif;
+	margin-bottom: 0;
+	background-color: #fff;
+	-webkit-text-fill-color: transparent;
+	-webkit-background-clip: text;
+	background-clip: text;
+	background-image: linear-gradient(
+		180deg,
+		rgba(38, 20, 72, 0.9),
+		rgba(66, 34, 126, 0.8)
+	);
+}
+
+.tagline h3 {
+	font-family: 'Raleway', sans-serif;
+	-webkit-text-fill-color: transparent;
+	-webkit-background-clip: text;
+	background-clip: text;
+	background-image: linear-gradient(
+		180deg,
+		rgba(38, 20, 72, 0.9),
+		rgba(66, 34, 126, 0.9)
+	);
+}
+
+.form {
+	margin-top: 40px;
+	border: solid 1px #e1edf8;
+	height: 1000px;
+}
+
+.form_section_btns {
+	display: flex;
+}
+
+.form_section_btns h3 {
+	color: #5a5a5a
+}
+
+.create_job, .preview {
+	flex: 1;
+	display: flex;
+	justify-content: center;
+	border-bottom: solid 1px #e1edf8;
+	cursor: pointer;
+}
+
+.border {
+	border-bottom: solid 4px rgba(66, 34, 126, 0.9);
+}
+
+.field_container {
+	display: flex;
+	flex-direction: column;
+}
+
+.field_container p {
+	margin: 30px 0 15px 40px;
+	color: #5a5a5a;
+	font-weight: 700;
+}
+
+.fields {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+}
+
+.field_container hr {
+	width: 600px;
+	border-width: 0;
+	height: 1px;
+	background-color: #b9b9b9;
+	margin-top: 20px;
+}
