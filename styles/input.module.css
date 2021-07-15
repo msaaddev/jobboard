@@ -8,6 +8,18 @@
 	margin-bottom: 20px;
 }
 
+.width {
+	width: 500px;
+}
+
+.top_margin {
+	margin-top: 30px;
+}
+
+.medium_margin {
+	margin-top: 10px;
+}
+
 .label {
 	padding-bottom: 5px;
 	font-weight: 500;
