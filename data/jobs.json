@@ -5,21 +5,21 @@
 			"title": "Frontend Developer",
 			"company": "Directus",
 			"location": "Remote, Anywhere",
-			"date": "July 12",
+			"date": "July 12"
 		},
 		{
 			"id": "8",
 			"title": "JavaScript Developer",
 			"company": "Kinsta",
 			"location": "Remote, Anywhere",
-			"date": "July 12",
+			"date": "July 12"
 		},
 		{
 			"id": "7",
 			"title": "Backend Developer",
 			"company": "Kinsta",
 			"location": "Remote, Anywhere",
-			"date": "July 12",
+			"date": "July 12"
 		}
 	],
 	"week": [
@@ -28,21 +28,21 @@
 			"title": "Network Engineer",
 			"company": "Cisco",
 			"location": "LA, United States",
-			"date": "July 11",
+			"date": "July 11"
 		},
 		{
 			"id": "5",
 			"title": "Backend Developer",
 			"company": "WP Engine",
 			"location": "United Kingdom",
-			"date": "July 10",
+			"date": "July 10"
 		},
 		{
 			"id": "4",
 			"title": "Backend Developer",
 			"company": "Xome Company",
 			"location": "United Kingdom",
-			"date": "July 9",
+			"date": "July 9"
 		}
 	],
 	"month": [
@@ -51,21 +51,21 @@
 			"title": "React Developer",
 			"company": "Affiniti",
 			"location": "Lahore, Pakistan",
-			"date": "July 8",
+			"date": "July 8"
 		},
 		{
 			"id": "2",
 			"title": "Fullstack Developer",
 			"company": "Confiz",
 			"location": "Lahore, Pakistan",
-			"date": "July 5",
+			"date": "July 5"
 		},
 		{
 			"id": "1",
 			"title": "Frontend Developer",
 			"company": "Amondo",
 			"location": "Remote, Anywhere",
-			"date": "July 3",
+			"date": "July 3"
 		}
 	]
 }
