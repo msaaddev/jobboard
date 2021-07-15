@@ -1,0 +1,8 @@
+/* styles */
+
+.container {
+	display: flex;
+	justify-content: center;
+	border-top: solid 1px #e1edf8;
+	height: 300px;
+}
