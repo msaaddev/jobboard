@@ -60,7 +60,6 @@ const Hire = () => {
 								htmlFor="job_type"
 								label="Type"
 								type="text"
-								autoFocus={true}
 								value=""
 								dropdown={true}
 								widthMax={true}
@@ -70,7 +69,6 @@ const Hire = () => {
 								htmlFor="job_area"
 								label="City and Country"
 								type="text"
-								autoFocus={true}
 								value=""
 								widthMax={true}
 								mediumMargin={true}
@@ -79,7 +77,15 @@ const Hire = () => {
 								htmlFor="application"
 								label="Application Link/Email"
 								type="text"
-								autoFocus={true}
+								value=""
+								widthMax={true}
+								mediumMargin={true}
+							/>
+							<Input
+								htmlFor="description"
+								label="Description"
+								placeholder="Enter job description..."
+								type="text"
 								value=""
 								widthMax={true}
 								mediumMargin={true}
@@ -111,6 +117,15 @@ const Hire = () => {
 								label="Website"
 								type="text"
 								autoFocus={true}
+								value=""
+								widthMax={true}
+								mediumMargin={true}
+							/>
+							<Input
+								htmlFor="description"
+								label="Company Description"
+								placeholder="Enter company description..."
+								type="text"
 								value=""
 								widthMax={true}
 								mediumMargin={true}

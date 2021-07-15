@@ -12,7 +12,8 @@ const Input = ({
 	dropdown = false,
 	widthMax = false,
 	firstChildtopMargin = false,
-	mediumMargin = false
+	mediumMargin = false,
+	placeholder
 }) => {
 	const [container, setContainer] = useState(styles.container);
 
@@ -37,26 +38,44 @@ const Input = ({
 		<>
 			<div className={container}>
 				{!dropdown ? (
-					<>
-						<label htmlFor={htmlFor} className={styles.label}>
-							{label}
-						</label>
-						<input
-							type={type}
-							autoFocus={autoFocus}
-							required
-							value={value}
-							onChange={(e) => handleOnChange(e.target.value)}
-							className={styles.input}
-						/>
-						{err !== '' && <p className={styles.err}>{err}</p>}
-					</>
+					label === 'Description' ||
+					label === 'Company Description' ? (
+						<>
+							<label htmlFor={htmlFor} className={styles.label}>
+								{label}
+							</label>
+							<textarea
+								placeholder={placeholder}
+								onChange={(e) => handleOnChange(e.target.value)}
+								cols="30"
+								rows="10"
+								className={styles.input}
+							></textarea>
+							{err !== '' && <p className={styles.err}>{err}</p>}
+						</>
+					) : (
+						<>
+							<label htmlFor={htmlFor} className={styles.label}>
+								{label}
+							</label>
+							<input
+								type={type}
+								autoFocus={autoFocus}
+								required
+								value={value}
+								onChange={(e) => handleOnChange(e.target.value)}
+								className={styles.input}
+							/>
+							{err !== '' && <p className={styles.err}>{err}</p>}
+						</>
+					)
 				) : label === 'Type' ? (
 					<>
 						<label htmlFor={htmlFor} className={styles.label}>
 							{label}
 						</label>
 						<select
+							className={styles.input}
 							onChange={(e) => handleOnChange(e.target.value)}
 						>
 							<option value="full_time">Full time</option>
@@ -71,6 +90,7 @@ const Input = ({
 							{label}
 						</label>
 						<select
+							className={styles.input}
 							onChange={(e) => handleOnChange(e.target.value)}
 						>
 							<option value={true}>Yes</option>
