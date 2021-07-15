@@ -78,10 +78,10 @@ const Input = ({
 							className={styles.input}
 							onChange={(e) => handleOnChange(e.target.value)}
 						>
-							<option value="full_time">Full time</option>
-							<option value="part_time">Part time</option>
-							<option value="contract">Contract</option>
-							<option value="internship">Internship</option>
+							<option value="Full-time">Full-time</option>
+							<option value="Part-time">Part-time</option>
+							<option value="Contract">Contract</option>
+							<option value="Internship">Internship</option>
 						</select>
 					</>
 				) : (

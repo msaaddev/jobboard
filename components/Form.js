@@ -1,8 +1,45 @@
+import { useContext, useEffect } from 'react';
+import { HireContext } from './context/HireContext';
 import Input from '../components/common/Input';
 import Button from '../components/common/Button';
 import styles from '../styles/form.module.css';
 
 const Form = () => {
+	// job contexts
+	const { jobTitle, setJobTitle } = useContext(HireContext);
+	const { jobType, setJobType } = useContext(HireContext);
+	const { jobArea, setJobArea } = useContext(HireContext);
+	const { jobLink, setJobLink } = useContext(HireContext);
+	const { jobDescription, setJobDescription } = useContext(HireContext);
+	const { setDate } = useContext(HireContext);
+
+	// company contexts
+	const { companyName, setCompanyName } = useContext(HireContext);
+	const { companyEmail, setCompanyEmail } = useContext(HireContext);
+	const { companyWebsite, setCompanyWebsite } = useContext(HireContext);
+	const { companyDescription, setCompanyDescription } =
+		useContext(HireContext);
+
+	useEffect(() => {
+		const date = new Date();
+		const months = [
+			'January',
+			'February',
+			'March',
+			'April',
+			'May',
+			'June',
+			'July',
+			'August',
+			'September',
+			'October',
+			'November',
+			'December'
+		];
+
+		setDate(`${months[date.getMonth()]} ${date.getDate()}`);
+	}, []);
+
 	return (
 		<div className={styles.field_container}>
 			<p>1. Job Details</p>
@@ -12,7 +49,8 @@ const Form = () => {
 					label="Title"
 					type="text"
 					autoFocus={true}
-					value=""
+					value={jobTitle}
+					handleOnChange={setJobTitle}
 					widthMax={true}
 					firstChildtopMargin={true}
 				/>
@@ -20,7 +58,8 @@ const Form = () => {
 					htmlFor="job_type"
 					label="Type"
 					type="text"
-					value=""
+					value={jobType}
+					handleOnChange={setJobType}
 					dropdown={true}
 					widthMax={true}
 					mediumMargin={true}
@@ -29,7 +68,8 @@ const Form = () => {
 					htmlFor="job_area"
 					label="City and Country"
 					type="text"
-					value=""
+					value={jobArea}
+					handleOnChange={setJobArea}
 					widthMax={true}
 					mediumMargin={true}
 				/>
@@ -37,7 +77,8 @@ const Form = () => {
 					htmlFor="application"
 					label="Application Link/Email"
 					type="text"
-					value=""
+					value={jobLink}
+					handleOnChange={setJobLink}
 					widthMax={true}
 					mediumMargin={true}
 				/>
@@ -46,7 +87,8 @@ const Form = () => {
 					label="Description"
 					placeholder="Enter job description..."
 					type="text"
-					value=""
+					value={jobDescription}
+					handleOnChange={setJobDescription}
 					widthMax={true}
 					mediumMargin={true}
 				/>
@@ -58,17 +100,17 @@ const Form = () => {
 					htmlFor="company_name"
 					label="Name"
 					type="text"
-					autoFocus={true}
-					value=""
+					value={companyName}
+					handleOnChange={setCompanyName}
 					widthMax={true}
 					firstChildtopMargin={true}
 				/>
 				<Input
 					htmlFor="job_email"
 					label="Email"
-					type="text"
-					autoFocus={true}
-					value=""
+					type="email"
+					value={companyEmail}
+					handleOnChange={setCompanyEmail}
 					widthMax={true}
 					mediumMargin={true}
 				/>
@@ -76,8 +118,8 @@ const Form = () => {
 					htmlFor="job_website"
 					label="Website"
 					type="text"
-					autoFocus={true}
-					value=""
+					value={companyWebsite}
+					handleOnChange={setCompanyWebsite}
 					widthMax={true}
 					mediumMargin={true}
 				/>
@@ -86,11 +128,14 @@ const Form = () => {
 					label="Company Description"
 					placeholder="Enter company description..."
 					type="text"
-					value=""
+					value={companyDescription}
+					handleOnChange={setCompanyDescription}
 					widthMax={true}
 					mediumMargin={true}
 				/>
-				<Button label="Preview" onClick="" />
+				<div className={styles.btn}>
+					<Button label="Preview" onClick="" />
+				</div>
 			</div>
 		</div>
 	);

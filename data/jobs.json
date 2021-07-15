@@ -6,7 +6,6 @@
 			"company": "Directus",
 			"location": "Remote, Anywhere",
 			"date": "July 12",
-			"letter": "D"
 		},
 		{
 			"id": "8",
@@ -14,7 +13,6 @@
 			"company": "Kinsta",
 			"location": "Remote, Anywhere",
 			"date": "July 12",
-			"letter": "K"
 		},
 		{
 			"id": "7",
@@ -22,7 +20,6 @@
 			"company": "Kinsta",
 			"location": "Remote, Anywhere",
 			"date": "July 12",
-			"letter": "K"
 		}
 	],
 	"week": [
@@ -32,7 +29,6 @@
 			"company": "Cisco",
 			"location": "LA, United States",
 			"date": "July 11",
-			"letter": "C"
 		},
 		{
 			"id": "5",
@@ -40,7 +36,6 @@
 			"company": "WP Engine",
 			"location": "United Kingdom",
 			"date": "July 10",
-			"letter": "W"
 		},
 		{
 			"id": "4",
@@ -48,7 +43,6 @@
 			"company": "Xome Company",
 			"location": "United Kingdom",
 			"date": "July 9",
-			"letter": "W"
 		}
 	],
 	"month": [
@@ -58,7 +52,6 @@
 			"company": "Affiniti",
 			"location": "Lahore, Pakistan",
 			"date": "July 8",
-			"letter": "A"
 		},
 		{
 			"id": "2",
@@ -66,7 +59,6 @@
 			"company": "Confiz",
 			"location": "Lahore, Pakistan",
 			"date": "July 5",
-			"letter": "C"
 		},
 		{
 			"id": "1",
@@ -74,7 +66,6 @@
 			"company": "Amondo",
 			"location": "Remote, Anywhere",
 			"date": "July 3",
-			"letter": "A"
 		}
 	]
 }

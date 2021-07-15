@@ -12,7 +12,6 @@ const Jobs = ({ day, jobs }) => {
 					return (
 						<Job
 							key={job.id}
-							letter={job.letter}
 							title={job.title}
 							date={job.date}
 							company={job.company}

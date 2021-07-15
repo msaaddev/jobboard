@@ -1,0 +1,8 @@
+/* styles */
+
+.thumbnail {
+	position: fixed;
+	bottom: 0;
+	margin: 20px 0;
+	width: 60%;
+}
