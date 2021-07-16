@@ -10,14 +10,17 @@ const Jobs = ({ label, jobs }) => {
 			<div className={styles.jobs}>
 				{jobs.map((job) => {
 					return (
-						<Job
-							key={job.id}
-							letter={job.companyName[0]}
-							title={job.jobTitle}
-							date={job.date}
-							company={job.companyName}
-							location={job.jobArea}
-						/>
+						<>
+							<Job
+								id={job.id}
+								key={job.id}
+								letter={job.companyName[0]}
+								title={job.jobTitle}
+								date={job.date}
+								company={job.companyName}
+								location={job.jobArea}
+							/>
+						</>
 					);
 				})}
 			</div>

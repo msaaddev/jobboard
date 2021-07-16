@@ -6,7 +6,7 @@ import { HireContext } from './context/HireContext';
 import { JobContext } from './context/JobContext';
 import styles from '../styles/preview.module.css';
 
-const Preview = () => {
+const Preview = ({ mainPreview = false }) => {
 	// job contexts
 	const { jobTitle, jobType, jobArea, jobDescription, jobLink, date } =
 		useContext(HireContext);
@@ -24,15 +24,15 @@ const Preview = () => {
 	 */
 	const handlePostJob = () => {
 		if (
-			jobTitle !== '' ||
-			jobTitle !== '' ||
-			jobArea !== '' ||
-			jobDescription !== '' ||
-			jobLink !== '' ||
-			companyName !== '' ||
-			companyEmail !== '' ||
-			companyWebsite !== '' ||
-			companyWebsite !== ''
+			jobTitle !== '' &&
+			jobType !== '' &&
+			jobArea !== '' &&
+			jobDescription !== '' &&
+			jobLink !== '' &&
+			companyName !== '' &&
+			companyEmail !== '' &&
+			companyWebsite !== '' &&
+			companyDescription !== ''
 		) {
 			const newState = [...jobs];
 
@@ -96,7 +96,12 @@ const Preview = () => {
 				</div>
 			</div>
 			<div className={styles.btn}>
-				<Button label="Post Job" onClick={handlePostJob} />
+				{!mainPreview && (
+					<Button label="Post Job" onClick={handlePostJob} />
+				)}
+				{mainPreview && (
+					<Button label="Apply" onClick={handlePostJob} />
+				)}
 			</div>
 		</div>
 	);

@@ -1,5 +1,4 @@
 import { useState } from 'react';
-import { HireProvider } from '../components/context/HireContext';
 import Form from '../components/Form';
 import Preview from '../components/Preview';
 import Thumbnail from '../components/Thumbnail';
@@ -39,7 +38,6 @@ const Hire = () => {
 
 	return (
 		<div className={styles.container}>
-			<HireProvider>
 				<div className={styles.sub_container}>
 					<div className={styles.tagline}>
 						<h2>Hire Software Developers</h2>
@@ -62,7 +60,6 @@ const Hire = () => {
 					</div>
 				</div>
 				<Thumbnail />
-			</HireProvider>
 		</div>
 	);
 };

@@ -1,6 +1,7 @@
+/* styles */
 
 .container {
-	margin-top: 0.7rem;
+	margin-top: 16px;
 	height: 110px;
 	border: solid 1px #dddddd;
 	border-top: none;
@@ -18,6 +19,10 @@
 
 .container:last-child {
 	border: solid 1px #dddddd;
+}
+
+.initial_wrapper {
+	margin-left: 20px;
 }
 
 .job_info {
