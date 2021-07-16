@@ -22,6 +22,10 @@
     background-image: linear-gradient(90deg, #4ea7f0, #0764af);
 }
 
+.margin {
+	margin-left: 0;
+}
+
 .initial span {
 	font-size: 14px;
 	padding-top: 5px;
