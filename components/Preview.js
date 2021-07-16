@@ -35,16 +35,15 @@ const Preview = () => {
 			companyWebsite !== ''
 		) {
 			const newState = [...jobs];
-			const temp = jobs[0];
 
 			let id;
 			try {
-				id = temp[0].id + 1;
+				id = parseInt(newState[0].id) + 1;
 			} catch (err) {
 				id = 1;
 			}
 
-			newState[0].unshift({
+			newState.unshift({
 				id,
 				jobTitle,
 				jobType,
