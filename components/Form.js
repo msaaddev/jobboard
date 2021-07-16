@@ -37,6 +37,16 @@ const Form = ({ onClick }) => {
 			'December'
 		];
 
+		setJobTitle('');
+		setJobType('');
+		setJobArea('');
+		setJobLink('');
+		setJobDescription('');
+		setCompanyName('');
+		setCompanyEmail('');
+		setCompanyWebsite('');
+		setCompanyDescription('');
+
 		setDate(`${months[date.getMonth()]} ${date.getDate()}`);
 	}, []);
 
