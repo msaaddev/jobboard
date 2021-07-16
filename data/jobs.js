@@ -5,7 +5,7 @@ const jobData = [
 		jobType: 'A',
 		jobArea: 'Remote, Anywhere',
 		jobDescription: '',
-		jobLink: '',
+		jobLink: 'me@msaad.dev',
 		companyName: 'Kinsta',
 		companyEmail: '',
 		companyWebsite: '',

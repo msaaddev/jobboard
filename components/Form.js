@@ -75,7 +75,7 @@ const Form = ({ onClick }) => {
 				/>
 				<Input
 					htmlFor="application"
-					label="Application Link/Email"
+					label="Application Email"
 					type="text"
 					value={jobLink}
 					handleOnChange={setJobLink}

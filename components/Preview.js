@@ -1,4 +1,5 @@
 import { useContext } from 'react';
+import Link from 'next/link';
 import Router from 'next/router';
 import Button from './common/Button';
 import Initial from './common/Initial';
@@ -100,7 +101,11 @@ const Preview = ({ mainPreview = false }) => {
 					<Button label="Post Job" onClick={handlePostJob} />
 				)}
 				{mainPreview && (
-					<Button label="Apply" onClick={handlePostJob} />
+					<Link href={`mailto:${jobLink}`}>
+						<a>
+							<Button label="Apply" onClick={handlePostJob} />
+						</a>
+					</Link>
 				)}
 			</div>
 		</div>
