@@ -32,7 +32,7 @@
 .title_wrapper {
 	display: flex;
 	justify-content: space-between;
-	width: 700px;
+	width: 730px;
 	margin: 0;
 	height: 30px;
 }
@@ -43,6 +43,10 @@
 	color: #5a5a5a;
 	margin: 0 0 5px 0;
 
+}
+
+.title_wrapper p {
+	margin-right: 40px;
 }
 
 .date {

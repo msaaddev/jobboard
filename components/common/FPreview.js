@@ -24,9 +24,15 @@ const FPreview = ({ id }) => {
 	const { jobs } = useContext(JobContext);
 
 	useEffect(() => {
-		const length = jobs.length - 1;
-		const index = length - (id - 1);
+		let index;
+		for (let i = 0; i < jobs.length; i++) {
+			if (jobs[i].id === id) {
+				index = i;
+				break;
+			}
+		}
 		const data = jobs[index];
+
 		setJobTitle(data.jobTitle);
 		setJobType(data.jobType);
 		setJobArea(data.jobArea);

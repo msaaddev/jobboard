@@ -44,7 +44,6 @@
 .job_listing {
 	margin-left: 60px;
 	margin-top: 10px;
-	width: 1000px;
 	overflow: scroll;
 }
 
@@ -56,14 +55,19 @@
 	margin-bottom: 60px;
 }
 
+.org_jobs {
+}
+
 .job_list {
 	display: flex;
+	margin-top: 10px;
 }
 
 .image {
 	display: flex;
 	align-items: center;
 	margin-left: 30px;
+	cursor: pointer;
 }
 
 

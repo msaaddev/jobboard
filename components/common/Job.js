@@ -4,7 +4,15 @@ import Image from 'next/image';
 import Initial from './Initial';
 import styles from '../../styles/job.module.css';
 
-const Job = ({ letter, title, date, company, location, id }) => {
+const Job = ({
+	letter,
+	title,
+	date,
+	company,
+	location,
+	id,
+	isPreview = true
+}) => {
 	const [showJob, setShowJob] = useState(false);
 
 	/**
@@ -13,7 +21,7 @@ const Job = ({ letter, title, date, company, location, id }) => {
 	 * show preview
 	 */
 	const showPreview = () => {
-		showJob ? setShowJob(false) : setShowJob(true);
+		if (isPreview) showJob ? setShowJob(false) : setShowJob(true);
 	};
 
 	return (
