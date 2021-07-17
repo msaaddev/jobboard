@@ -1,5 +1,6 @@
 import { useEffect, useContext } from 'react';
 import { useRouter } from 'next/router';
+import axios from 'axios';
 import { AuthContext } from '../components/context/AuthContext';
 import fire from '../utils/firebase';
 import Input from '../components/common/Input';
@@ -49,6 +50,12 @@ const Login = () => {
 			.then(() => {
 				router.push('/dashboard');
 				setHasSignedIn(true);
+				try {
+					const res = axios.post(
+						'http://localhost:3000/api/login',
+						{}
+					);
+				} catch (err) {}
 			})
 			.catch((err) => {
 				const { code, message } = err;
