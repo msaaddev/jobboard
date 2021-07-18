@@ -8,7 +8,7 @@ import styles from '../styles/dashboard.module.css';
 
 const Dashbaord = () => {
 	const { email, setHasSignedIn } = useContext(AuthContext);
-	const [isUser, setIsUser] = useState(false);
+	const [isOrg, setIsOrg] = useState(false);
 	const { jobs, setJobs, userJobs, setUserJobs } = useContext(JobContext);
 
 	useEffect(() => {
@@ -18,7 +18,7 @@ const Dashbaord = () => {
 			.doc(email)
 			.onSnapshot((doc) => {
 				const org = doc.data().isOrg;
-				setIsUser(org);
+				setIsOrg(org);
 			});
 		setHasSignedIn(true);
 	}, []);
@@ -69,13 +69,13 @@ const Dashbaord = () => {
 		<div className={styles.container}>
 			<div className={styles.subcontainer_1}>
 				<div className={styles.btn}>
-					{isUser && <button>Applied Jobs</button>}
-					{!isUser && <button>Posted Jobs</button>}
+					{!isOrg && <button>Applied Jobs</button>}
+					{isOrg && <button>Posted Jobs</button>}
 				</div>
 			</div>
 			<div className={styles.subcontainer_2}>
 				<div className={styles.job_listing}>
-					{!isUser ? (
+					{isOrg ? (
 						<div className={styles.org_jobs}>
 							{userJobs.length > 0 ? (
 								userJobs.map((job) => {
