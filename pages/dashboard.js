@@ -1,16 +1,25 @@
 import { useState, useEffect, useContext } from 'react';
 import Image from 'next/image';
+import fire from '../utils/firebase';
 import Job from '../components/common/Job';
 import { AuthContext } from '../components/context/AuthContext';
 import { JobContext } from '../components/context/JobContext';
 import styles from '../styles/dashboard.module.css';
 
 const Dashbaord = () => {
-	const { setHasSignedIn } = useContext(AuthContext);
-	const [isUser, setIsUser] = useState(true);
+	const { email, setHasSignedIn } = useContext(AuthContext);
+	const [isUser, setIsUser] = useState(false);
 	const { jobs, setJobs, userJobs, setUserJobs } = useContext(JobContext);
 
 	useEffect(() => {
+		const db = fire.firestore();
+		console.log('email', email);
+		db.collection('users')
+			.doc(email)
+			.onSnapshot((doc) => {
+				const org = doc.data().isOrg;
+				setIsUser(org);
+			});
 		setHasSignedIn(true);
 	}, []);
 
@@ -40,6 +49,17 @@ const Dashbaord = () => {
 
 		const newJobState = [...jobs];
 		newJobState.splice(secondIndex, 1);
+
+		const db = fire.firestore();
+		console.log(email);
+		db.collection('users')
+			.doc(email)
+			.update({
+				jobList: newState
+			})
+			.catch((err) => {
+				console.log('Error updating the database', err);
+			});
 
 		setUserJobs(newState);
 		setJobs(newJobState);

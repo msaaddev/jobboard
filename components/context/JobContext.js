@@ -6,7 +6,7 @@ const JobContext = createContext();
 const JobProvider = ({ children }) => {
 	const [jobs, setJobs] = useState(JobData);
 	const [individualJob, setIndividualJob] = useState('');
-	const [userJobs, setUserJobs] = useState(JobData);
+	const [userJobs, setUserJobs] = useState([]);
 
 	return (
 		<JobContext.Provider

@@ -1,7 +1,7 @@
 import { useEffect, useContext } from 'react';
 import { useRouter } from 'next/router';
-import axios from 'axios';
 import { AuthContext } from '../components/context/AuthContext';
+import { JobContext } from '../components/context/JobContext';
 import fire from '../utils/firebase';
 import Input from '../components/common/Input';
 import HelperMsg from '../components/common/HelperMsg';
@@ -15,6 +15,8 @@ const Login = () => {
 	const { emailErr, setEmailErr } = useContext(AuthContext);
 	const { passwordErr, setPasswordErr } = useContext(AuthContext);
 	const { setHasSignedIn, hasSignedIn } = useContext(AuthContext);
+	const { setIsOrg } = useContext(AuthContext);
+	const { userJobs, setUserJobs } = useContext(JobContext);
 	const router = useRouter();
 
 	/**
@@ -44,18 +46,23 @@ const Login = () => {
 	 */
 	const handleLogin = async () => {
 		clearErrs();
+		const db = fire.firestore();
 
 		fire.auth()
 			.signInWithEmailAndPassword(email, password)
 			.then(() => {
-				router.push('/dashboard');
+				db.collection('users')
+					.doc(email)
+					.onSnapshot((doc) => {
+						const eml = doc.data().email;
+						const jobs = doc.data().jobList;
+						const org = doc.data().isOrg;
+						setEmail(eml);
+						setUserJobs(jobs);
+						setIsOrg(org);
+					});
 				setHasSignedIn(true);
-				try {
-					const res = axios.post(
-						'http://localhost:3000/api/login',
-						{}
-					);
-				} catch (err) {}
+				router.push('/dashboard');
 			})
 			.catch((err) => {
 				const { code, message } = err;

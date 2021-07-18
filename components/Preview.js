@@ -1,22 +1,29 @@
 import { useContext } from 'react';
 import Link from 'next/link';
 import Router from 'next/router';
+import fire from '../utils/firebase';
 import Button from './common/Button';
 import Initial from './common/Initial';
 import { HireContext } from './context/HireContext';
 import { JobContext } from './context/JobContext';
+import { AuthContext } from './context/AuthContext';
 import styles from '../styles/preview.module.css';
 
 const Preview = ({ mainPreview = false }) => {
-	// job contexts
+	// auth context data
+	const { email } = useContext(AuthContext);
+
+	// job contexts data
 	const { jobTitle, jobType, jobArea, jobDescription, jobLink, date } =
 		useContext(HireContext);
 
-	// company contexts
+	// company contexts data
 	const { companyName, companyEmail, companyWebsite, companyDescription } =
 		useContext(HireContext);
 
+	// job context data
 	const { jobs, setJobs } = useContext(JobContext);
+	const { userJobs, setUserJobs } = useContext(JobContext);
 
 	/**
 	 *
@@ -36,6 +43,7 @@ const Preview = ({ mainPreview = false }) => {
 			companyDescription !== ''
 		) {
 			const newState = [...jobs];
+			const newUserJobs = [...userJobs];
 
 			let id;
 			try {
@@ -44,7 +52,7 @@ const Preview = ({ mainPreview = false }) => {
 				id = 1;
 			}
 
-			newState.unshift({
+			const jobInfo = {
 				id,
 				jobTitle,
 				jobType,
@@ -56,8 +64,24 @@ const Preview = ({ mainPreview = false }) => {
 				companyWebsite,
 				companyDescription,
 				date
-			});
+			};
+
+			newState.unshift(jobInfo);
+			newUserJobs.unshift(jobInfo);
+
+			const db = fire.firestore();
+
+			db.collection('users')
+				.doc(email)
+				.update({
+					jobList: newUserJobs
+				})
+				.catch((err) => {
+					console.log('Error updating the database', err);
+				});
+
 			setJobs(newState);
+			setUserJobs(newUserJobs);
 
 			Router.push('/');
 		}
