@@ -13,7 +13,7 @@ const SignUp = () => {
 	const { password, setPassword } = useContext(AuthContext);
 	const { emailErr, setEmailErr } = useContext(AuthContext);
 	const { passwordErr, setPasswordErr } = useContext(AuthContext);
-	const { setIsOrg } = useContext(AuthContext);
+	const { isOrg, setIsOrg } = useContext(AuthContext);
 	const { hasSignedIn } = useContext(AuthContext);
 	const router = useRouter();
 
@@ -44,11 +44,24 @@ const SignUp = () => {
 	 */
 	const handleSignUp = async () => {
 		clearErrs();
+		const db = fire.firestore();
 
 		fire.auth()
 			.createUserWithEmailAndPassword(email, password)
 			.then(() => {
-				router.push('/login');
+				db.collection('users')
+					.doc(email)
+					.set({
+						email: email,
+						isOrg: isOrg === 'false' ? false : true,
+						jobList: []
+					})
+					.then(() => {
+						router.push('/login');
+					})
+					.catch((err) => {
+						console.error('Error adding document: ', err);
+					});
 			})
 			.catch((err) => {
 				const { code, message } = err;
@@ -106,7 +119,7 @@ const SignUp = () => {
 					label="Password"
 					type="password"
 					value={password}
-					handleOnChange={setIsOrg}
+					handleOnChange={setPassword}
 					err={passwordErr}
 				/>
 				<Input
