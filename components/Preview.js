@@ -42,6 +42,8 @@ const Preview = ({ mainPreview = false }) => {
 			companyWebsite !== '' &&
 			companyDescription !== ''
 		) {
+			console.log('hello');
+
 			const newState = [...jobs];
 			const newUserJobs = [...userJobs];
 
@@ -76,6 +78,13 @@ const Preview = ({ mainPreview = false }) => {
 				.update({
 					jobList: newUserJobs
 				})
+				.catch((err) => {
+					console.log('Error updating the database', err);
+				});
+
+			db.collection('jobs')
+				.doc('jobsDocument')
+				.update({ allJobs: newState })
 				.catch((err) => {
 					console.log('Error updating the database', err);
 				});

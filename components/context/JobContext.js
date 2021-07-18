@@ -4,7 +4,7 @@ import JobData from '../../data/jobs';
 const JobContext = createContext();
 
 const JobProvider = ({ children }) => {
-	const [jobs, setJobs] = useState(JobData);
+	const [jobs, setJobs] = useState([]);
 	const [individualJob, setIndividualJob] = useState('');
 	const [userJobs, setUserJobs] = useState([]);
 
