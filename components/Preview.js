@@ -33,7 +33,6 @@ const Preview = ({ mainPreview = false }) => {
 	const handlePostJob = () => {
 		if (
 			jobTitle !== '' &&
-			jobType !== '' &&
 			jobArea !== '' &&
 			jobDescription !== '' &&
 			jobLink !== '' &&
