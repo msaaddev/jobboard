@@ -41,8 +41,6 @@ const Preview = ({ mainPreview = false }) => {
 			companyWebsite !== '' &&
 			companyDescription !== ''
 		) {
-			console.log('hello');
-
 			const newState = [...jobs];
 			const newUserJobs = [...userJobs];
 
@@ -95,6 +93,50 @@ const Preview = ({ mainPreview = false }) => {
 		}
 	};
 
+	/**
+	 *
+	 *	handle apply to job
+	 */
+	const handleApply = () => {
+		const newUserJobs = [...userJobs];
+
+		let id;
+		try {
+			id = parseInt(newUserJobs[0].id) + 1;
+		} catch (err) {
+			id = 1;
+		}
+
+		const jobInfo = {
+			id,
+			jobTitle,
+			jobType,
+			jobArea,
+			jobLink,
+			jobDescription,
+			companyName,
+			companyEmail,
+			companyWebsite,
+			companyDescription,
+			date
+		};
+
+		newUserJobs.unshift(jobInfo);
+
+		const db = fire.firestore();
+
+		db.collection('users')
+			.doc(email)
+			.update({
+				jobList: newUserJobs
+			})
+			.catch((err) => {
+				console.log('Error updating the database', err);
+			});
+
+		setUserJobs(newUserJobs);
+	};
+
 	return (
 		<div className={styles.preview_container}>
 			<div className={styles.initial_wrapper}>
@@ -135,7 +177,7 @@ const Preview = ({ mainPreview = false }) => {
 				{mainPreview && (
 					<Link href={`mailto:${jobLink}`}>
 						<a>
-							<Button label="Apply" onClick={handlePostJob} />
+							<Button label="Apply" onClick={handleApply} />
 						</a>
 					</Link>
 				)}
