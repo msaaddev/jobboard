@@ -18,8 +18,12 @@ export default function Home() {
 
 	return (
 		<>
-			{jobs.length > 0 && (
+			{(jobs.length > 0 && (
 				<Jobs label="All the Developer Jobs" jobs={jobs} />
+			)) || (
+				<h2 style={{ textAlign: 'center', marginTop: '20px' }}>
+					No Jobs posted yet.
+				</h2>
 			)}
 		</>
 	);

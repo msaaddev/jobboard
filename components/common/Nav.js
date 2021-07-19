@@ -7,8 +7,11 @@ import fire from '../../utils/firebase';
 import styles from '../../styles/nav.module.css';
 
 const Nav = () => {
-	const { hasSignedIn: val, setHasSignedIn: setVal } =
-		useContext(AuthContext);
+	const {
+		hasSignedIn: val,
+		setHasSignedIn: setVal,
+		isOrg
+	} = useContext(AuthContext);
 	const { setUserJobs } = useContext(JobContext);
 	const [hasSignedIn, setHasSignedIn] = useState(val);
 
@@ -80,11 +83,13 @@ const Nav = () => {
 
 					<div>
 						{val ? (
-							<Link href="/hire">
-								<a>
-									<button>Post a Job</button>
-								</a>
-							</Link>
+							isOrg ? (
+								<Link href="/hire">
+									<a>
+										<button>Post a Job</button>
+									</a>
+								</Link>
+							) : null
 						) : (
 							<Link href="/login">
 								<a>

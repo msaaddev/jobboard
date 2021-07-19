@@ -7,7 +7,7 @@ import { JobContext } from '../components/context/JobContext';
 import styles from '../styles/dashboard.module.css';
 
 const Dashbaord = () => {
-	const { email, setHasSignedIn } = useContext(AuthContext);
+	const { email, setHasSignedIn, setIsOrg: flag } = useContext(AuthContext);
 	const { jobs, setJobs, userJobs, setUserJobs } = useContext(JobContext);
 	const [isOrg, setIsOrg] = useState(false);
 	const [orgMsg, setOrgMsg] = useState('');
@@ -25,6 +25,7 @@ const Dashbaord = () => {
 				const org = doc.data().isOrg;
 				const jobs = doc.data().jobList;
 				setIsOrg(org);
+				flag(org);
 				setUserJobs(jobs);
 				setOrgMsg(
 					'No jobs from your organization has been posted yet.'
