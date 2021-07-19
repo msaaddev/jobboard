@@ -1,12 +1,21 @@
 import Image from 'next/image';
 import Link from 'next/link';
-import { useContext } from 'react';
+import { useEffect, useState, useContext } from 'react';
 import { AuthContext } from '../context/AuthContext';
+import { JobContext } from '../context/JobContext';
 import fire from '../../utils/firebase';
 import styles from '../../styles/nav.module.css';
 
 const Nav = () => {
-	const { setHasSignedIn, hasSignedIn } = useContext(AuthContext);
+	const { hasSignedIn: val, setHasSignedIn: setVal } =
+		useContext(AuthContext);
+	const { setUserJobs } = useContext(JobContext);
+	const [hasSignedIn, setHasSignedIn] = useState(val);
+
+	useEffect(() => {
+		const signedIn = localStorage.getItem('hasSignedIn');
+		setHasSignedIn(signedIn);
+	}, []);
 
 	/**
 	 *
@@ -16,6 +25,10 @@ const Nav = () => {
 	const handleLogout = () => {
 		fire.auth().signOut();
 		setHasSignedIn(false);
+		setVal(false);
+		setUserJobs([]);
+		localStorage.setItem('hasSignedIn', false);
+		localStorage.setItem('email', null);
 	};
 
 	return (
@@ -34,7 +47,7 @@ const Nav = () => {
 					</Link>
 				</div>
 				<div className={styles.links_container}>
-					{!hasSignedIn ? (
+					{!val ? (
 						<>
 							<Link href="/login">
 								<div className={styles.links}>
@@ -50,10 +63,7 @@ const Nav = () => {
 					) : (
 						<>
 							<Link href="/dashboard">
-								<div
-									className={styles.links}
-									onClick={handleLogout}
-								>
+								<div className={styles.links}>
 									<a>Dashboard</a>
 								</div>
 							</Link>
@@ -69,7 +79,7 @@ const Nav = () => {
 					)}
 
 					<div>
-						{hasSignedIn ? (
+						{val ? (
 							<Link href="/hire">
 								<a>
 									<button>Post a Job</button>

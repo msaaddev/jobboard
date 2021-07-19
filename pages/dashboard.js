@@ -8,18 +8,30 @@ import styles from '../styles/dashboard.module.css';
 
 const Dashbaord = () => {
 	const { email, setHasSignedIn } = useContext(AuthContext);
-	const [isOrg, setIsOrg] = useState(false);
 	const { jobs, setJobs, userJobs, setUserJobs } = useContext(JobContext);
+	const [isOrg, setIsOrg] = useState(false);
+	const [orgMsg, setOrgMsg] = useState('');
+	const [usrMsg, setUsrMsg] = useState('');
 
 	useEffect(() => {
+		const eml = localStorage.getItem('email');
 		const db = fire.firestore();
-		console.log('email', email);
+
+		setOrgMsg('Loading...');
+		setUsrMsg('Loading...');
 		db.collection('users')
-			.doc(email)
+			.doc(eml)
 			.onSnapshot((doc) => {
 				const org = doc.data().isOrg;
+				const jobs = doc.data().jobList;
 				setIsOrg(org);
+				setUserJobs(jobs);
+				setOrgMsg(
+					'No jobs from your organization has been posted yet.'
+				);
+				setUsrMsg('You have not applied to any jobs yet...');
 			});
+
 		setHasSignedIn(true);
 	}, []);
 
@@ -51,7 +63,7 @@ const Dashbaord = () => {
 		newJobState.splice(secondIndex, 1);
 
 		const db = fire.firestore();
-		console.log(email);
+
 		db.collection('users')
 			.doc(email)
 			.update({
@@ -110,10 +122,7 @@ const Dashbaord = () => {
 									);
 								})
 							) : (
-								<h2 className={styles.notice}>
-									No jobs from your organization has been
-									posted yet.
-								</h2>
+								<h2 className={styles.notice}>{orgMsg}</h2>
 							)}
 						</div>
 					) : (
@@ -135,9 +144,7 @@ const Dashbaord = () => {
 									);
 								})
 							) : (
-								<h2 className={styles.notice}>
-									You have not applied to any jobs yet...
-								</h2>
+								<h2 className={styles.notice}>{usrMsg}</h2>
 							)}
 						</div>
 					)}

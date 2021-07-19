@@ -69,9 +69,9 @@ const Preview = ({ mainPreview = false }) => {
 			newUserJobs.unshift(jobInfo);
 
 			const db = fire.firestore();
-
+			const eml = localStorage.getItem('email');
 			db.collection('users')
-				.doc(email)
+				.doc(eml)
 				.update({
 					jobList: newUserJobs
 				})

@@ -51,17 +51,9 @@ const Login = () => {
 		fire.auth()
 			.signInWithEmailAndPassword(email, password)
 			.then(() => {
-				db.collection('users')
-					.doc(email)
-					.onSnapshot((doc) => {
-						const eml = doc.data().email;
-						const jobs = doc.data().jobList;
-						const org = doc.data().isOrg;
-						setEmail(eml);
-						setUserJobs(jobs);
-						setIsOrg(org);
-					});
 				setHasSignedIn(true);
+				localStorage.setItem('hasSignedIn', true);
+				localStorage.setItem('email', email);
 				router.push('/dashboard');
 			})
 			.catch((err) => {
@@ -89,7 +81,6 @@ const Login = () => {
 	const authListener = () => {
 		fire.auth().onAuthStateChanged((user) => {
 			if (user) {
-				clearInput();
 				setUser(user);
 			} else {
 				setUser('');
