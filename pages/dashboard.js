@@ -74,6 +74,12 @@ const Dashbaord = () => {
 				console.log('Error updating the database', err);
 			});
 
+		db.collection('jobs')
+			.doc('jobsDocument')
+			.update({ allJobs: newJobState })
+			.catch((err) => {
+				console.log('Error updating the database', err);
+			});
 		setUserJobs(newState);
 		setJobs(newJobState);
 	};
