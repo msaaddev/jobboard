@@ -22,7 +22,7 @@ export default function Home() {
 				<Jobs label="All the Developer Jobs" jobs={jobs} />
 			)) || (
 				<h2 style={{ textAlign: 'center', marginTop: '20px' }}>
-					No Jobs posted yet.
+					Loading...
 				</h2>
 			)}
 		</>
