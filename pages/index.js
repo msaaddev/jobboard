@@ -21,7 +21,13 @@ export default function Home() {
 			{(jobs.length > 0 && (
 				<Jobs label="All the Developer Jobs" jobs={jobs} />
 			)) || (
-				<h2 style={{ textAlign: 'center', marginTop: '20px' }}>
+				<h2
+					style={{
+						textAlign: 'center',
+						marginTop: '70px',
+						color: '#5a5a5a'
+					}}
+				>
 					Loading...
 				</h2>
 			)}
