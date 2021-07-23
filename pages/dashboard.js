@@ -18,32 +18,31 @@ const Dashbaord = () => {
 	useEffect(() => {
 		if (typeof window !== undefined) {
 			const hasSignedIn = localStorage.getItem('hasSignedIn');
-			console.log('a', hasSignedIn);
 
 			if (hasSignedIn === 'false') {
 				router.push('/');
+			} else {
+				const eml = localStorage.getItem('email');
+				const db = fire.firestore();
+
+				setOrgMsg('Loading...');
+				setUsrMsg('Loading...');
+				db.collection('users')
+					.doc(eml)
+					.onSnapshot((doc) => {
+						const org = doc.data().isOrg;
+						const jobs = doc.data().jobList;
+						setIsOrg(org);
+						flag(org);
+						setUserJobs(jobs);
+						setOrgMsg(
+							'No jobs from your organization has been posted yet.'
+						);
+						setUsrMsg('You have not applied to any jobs yet...');
+					});
+
+				setHasSignedIn(true);
 			}
-		} else {
-			const eml = localStorage.getItem('email');
-			const db = fire.firestore();
-
-			setOrgMsg('Loading...');
-			setUsrMsg('Loading...');
-			db.collection('users')
-				.doc(eml)
-				.onSnapshot((doc) => {
-					const org = doc.data().isOrg;
-					const jobs = doc.data().jobList;
-					setIsOrg(org);
-					flag(org);
-					setUserJobs(jobs);
-					setOrgMsg(
-						'No jobs from your organization has been posted yet.'
-					);
-					setUsrMsg('You have not applied to any jobs yet...');
-				});
-
-			setHasSignedIn(true);
 		}
 	}, []);
 
