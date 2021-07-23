@@ -1,4 +1,5 @@
 import { useState, useEffect, useContext } from 'react';
+import { useRouter } from 'next/router';
 import Image from 'next/image';
 import fire from '../utils/firebase';
 import Job from '../components/common/Job';
@@ -12,28 +13,38 @@ const Dashbaord = () => {
 	const [isOrg, setIsOrg] = useState(false);
 	const [orgMsg, setOrgMsg] = useState('');
 	const [usrMsg, setUsrMsg] = useState('');
+	const router = useRouter();
 
 	useEffect(() => {
-		const eml = localStorage.getItem('email');
-		const db = fire.firestore();
+		if (typeof window !== undefined) {
+			const hasSignedIn = localStorage.getItem('hasSignedIn');
+			console.log('a', hasSignedIn);
 
-		setOrgMsg('Loading...');
-		setUsrMsg('Loading...');
-		db.collection('users')
-			.doc(eml)
-			.onSnapshot((doc) => {
-				const org = doc.data().isOrg;
-				const jobs = doc.data().jobList;
-				setIsOrg(org);
-				flag(org);
-				setUserJobs(jobs);
-				setOrgMsg(
-					'No jobs from your organization has been posted yet.'
-				);
-				setUsrMsg('You have not applied to any jobs yet...');
-			});
+			if (hasSignedIn === 'false') {
+				router.push('/');
+			}
+		} else {
+			const eml = localStorage.getItem('email');
+			const db = fire.firestore();
 
-		setHasSignedIn(true);
+			setOrgMsg('Loading...');
+			setUsrMsg('Loading...');
+			db.collection('users')
+				.doc(eml)
+				.onSnapshot((doc) => {
+					const org = doc.data().isOrg;
+					const jobs = doc.data().jobList;
+					setIsOrg(org);
+					flag(org);
+					setUserJobs(jobs);
+					setOrgMsg(
+						'No jobs from your organization has been posted yet.'
+					);
+					setUsrMsg('You have not applied to any jobs yet...');
+				});
+
+			setHasSignedIn(true);
+		}
 	}, []);
 
 	/**

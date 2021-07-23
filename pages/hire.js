@@ -1,4 +1,5 @@
 import { useState, useEffect, useContext } from 'react';
+import { useRouter } from 'next/router';
 import { HireContext } from '../components/context/HireContext';
 import Form from '../components/Form';
 import Preview from '../components/Preview';
@@ -25,8 +26,18 @@ const Hire = () => {
 	const { setCompanyEmail } = useContext(HireContext);
 	const { setCompanyWebsite } = useContext(HireContext);
 	const { setCompanyDescription } = useContext(HireContext);
+	const router = useRouter();
 
 	useEffect(() => {
+		if (typeof window !== undefined) {
+			const hasSignedIn = localStorage.getItem('hasSignedIn');
+			console.log('a', hasSignedIn);
+
+			if (hasSignedIn === 'false') {
+				router.push('/');
+			}
+		}
+
 		setJobTitle('');
 		setJobType('');
 		setJobArea('');
