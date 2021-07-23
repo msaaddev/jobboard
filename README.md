@@ -1,34 +1,47 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+![jobboard](assets/cover.png)
 
-## Getting Started
+<div align="center">
+	<strong>A progressive web app built using Next.js and Firebase where companies can put on a job ad and potential candidates can reach out to them.</strong>
+</div>
 
-First, run the development server:
+![separate](assets/separate.jpeg)
 
-```bash
-npm run dev
-# or
-yarn dev
-```
+- **PWA**: A progressive web app so you can also install and use it as a desktop app.
+- **Company**: Sign up as a company to post jobs on the web app (uses Firebase Authentication).
+- **User**: Sign up as a user to apply to any jobs.
+- **Job Post**: Post jobs instantly to the app after you have logged in.
+- **Apply**: Quick and easy way to apply to any job listed on the website.
+- **Dashboard**: Separate dashboards for both the users and the companies so they can keep track of their job application and listing respectively.
+- **Delete Job**: Companies can also delete jobs from their dashboard
+- **Firestore**: Uses firestore for the database to store all the user data.
+- **Deployed**: Hosted on Vercel and is fully functional.
+- **MIT Licensed**: Completely open-source. Feel free to contribute.
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+>The design is a replica of jsjobbs.com with additional features implemented like sign up, login, dashboard.
 
-You can start editing the page by modifying `pages/index.js`. The page auto-updates as you edit the file.
+## 💻 Images
 
-[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.js`.
+### Homepage
 
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
+![homepage](assets/home.png)
 
-## Learn More
+### Sign up
 
-To learn more about Next.js, take a look at the following resources:
+![sign up](assets/signup.png)
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+### Job Post
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+![job post](assets/hire.png)
 
-## Deploy on Vercel
+### Dashboard
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+![dashboard](assets/dashboard.png)
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+## 👨🏻‍💻 Contributing
+
+Make sure you read the [contributing guidelines](https://github.com/msaaddev/jobboard/blob/master/contributing.md) before opening a PR. If you want something else to **integrate** with the CLI, open an issue in the repository and I will get back to it.
+
+## 🔑 License & Conduct
+
+- MIT © [Saad Irfan](https://github.com/msaaddev)
+- [Code of Conduct](https://github.com/msaaddev/jobboard/blob/master/code_of_conduct.md)
