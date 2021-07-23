@@ -9,12 +9,14 @@ export default function Home() {
 
 	useEffect(() => {
 		const db = fire.firestore();
-		db.collection('jobs')
-			.doc('jobsDocument')
-			.onSnapshot((doc) => {
-				const job = doc.data().allJobs;
-				setJobs(job);
-			});
+		jobs.length < 1 &&
+			db
+				.collection('jobs')
+				.doc('jobsDocument')
+				.onSnapshot((doc) => {
+					const job = doc.data().allJobs;
+					setJobs(job);
+				});
 	}, []);
 
 	return (
