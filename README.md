@@ -1,7 +1,7 @@
 ![jobboard](assets/cover.png)
 
 <div align="center">
-	<strong>A progressive web app built using Next.js and Firebase where companies can put on a job ad and potential candidates can reach out to them.</strong>
+	<strong>A progressive web app built using Next.js and Firebase where companies can put up a job ad and potential candidates can reach out to them.</strong>
 </div>
 
 ![separate](assets/separate.jpeg)
