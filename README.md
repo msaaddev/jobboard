@@ -12,7 +12,7 @@
 - **Job Post**: Post jobs instantly to the app after you have logged in.
 - **Apply**: Quick and easy way to apply to any job listed on the website.
 - **Dashboard**: Separate dashboards for both the users and the companies so they can keep track of their job application and listing respectively.
-- **Delete Job**: Companies can also delete jobs from their dashboard
+- **Delete Job**: Companies can also delete their posted jobs from their dashboard
 - **Firestore**: Uses firestore for the database to store all the user data.
 - **Deployed**: Hosted on Vercel and is fully functional.
 - **MIT Licensed**: Completely open-source. Feel free to contribute.
