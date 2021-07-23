@@ -1,4 +1,5 @@
 import { useContext, useEffect } from 'react';
+import Load from '../components/common/Load';
 import fire from '../utils/firebase';
 import { JobContext } from '../components/context/JobContext';
 import Jobs from '../components/Jobs';
@@ -20,17 +21,7 @@ export default function Home() {
 		<>
 			{(jobs.length > 0 && (
 				<Jobs label="All the Developer Jobs" jobs={jobs} />
-			)) || (
-				<h2
-					style={{
-						textAlign: 'center',
-						marginTop: '70px',
-						color: '#5a5a5a'
-					}}
-				>
-					Loading...
-				</h2>
-			)}
+			)) || <Load />}
 		</>
 	);
 }
