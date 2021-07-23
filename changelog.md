@@ -7,4 +7,4 @@
 - Companies can post a job
 - Users can apply to a job
 - Separate dashboards for both the users and the companies so they can keep track of their job application & listing respectively
-- Firestore integrated
+- Firestore integrated as a database
