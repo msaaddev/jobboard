@@ -6,6 +6,8 @@ import HelperMsg from '../components/common/HelperMsg';
 import Button from '../components/common/Button';
 import fire from '../utils/firebase';
 import styles from '../styles/auth.module.css';
+import { getAuth, onAuthStateChanged, createUserWithEmailAndPassword } from 'firebase/auth';
+import { collection, doc, setDoc } from 'firebase/firestore';
 
 const SignUp = () => {
 	const { user, setUser } = useContext(AuthContext);
@@ -16,6 +18,7 @@ const SignUp = () => {
 	const { isOrg, setIsOrg } = useContext(AuthContext);
 	const { hasSignedIn } = useContext(AuthContext);
 	const router = useRouter();
+	const auth = getAuth(fire);
 
 	/**
 	 *
@@ -44,37 +47,25 @@ const SignUp = () => {
 	 */
 	const handleSignUp = async () => {
 		clearErrs();
-		const db = fire.firestore();
 
-		fire.auth()
-			.createUserWithEmailAndPassword(email, password)
-			.then(() => {
-				db.collection('users')
-					.doc(email)
-					.set({
-						email: email,
-						isOrg: isOrg === 'false' ? false : true,
-						jobList: []
-					})
-					.then(() => {
-						router.push('/login');
-					})
-					.catch((err) => {
-						console.error('Error adding document: ', err);
-					});
+		createUserWithEmailAndPassword(auth, email, password)
+			.then((userCredential) => {
+				const user = userCredential.user;
+				router.push('/login');
 			})
-			.catch((err) => {
-				const { code, message } = err;
-
+			.catch((error) => {
+				const errorCode = error.code;
+				const errorMessage = error.message;
+				// ..
 				if (
-					code === 'auth/email-already-in-use' ||
-					code === 'auth/invalid-email'
+					errorCode === 'auth/email-already-in-use' ||
+					errorCode === 'auth/invalid-email'
 				) {
-					setEmailErr(message);
+					setEmailErr(errorMessage);
 				}
 
-				if (code === 'auth/weak-password') {
-					setPasswordErr(message);
+				if (errorCode === 'auth/weak-password') {
+					setPasswordErr(errorMessage);
 				}
 			});
 	};
@@ -85,7 +76,7 @@ const SignUp = () => {
 	 * checks where the user is logged in or not
 	 */
 	const authListener = () => {
-		fire.auth().onAuthStateChanged((user) => {
+		onAuthStateChanged(auth, (user) => {
 			if (user) {
 				clearInput();
 				setUser(user);

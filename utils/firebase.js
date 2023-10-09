@@ -1,22 +1,19 @@
-import firebase from 'firebase/app';
+import { getApp, getApps, initializeApp } from 'firebase/app';
 import 'firebase/auth';
-import 'firebase/firestore';
+import { getFirestore } from 'firebase/firestore';
 
-var firebaseConfig = {
-	apiKey: `${process.env.NEXT_PUBLIC_Firebase_API_Key}`,
-	authDomain: `${process.env.NEXT_PUBLIC_Auth_Domain}`,
-	projectId: `${process.env.NEXT_PUBLIC_Project_Id}`,
-	storageBucket: `${process.env.NEXT_PUBLIC_Storage_Bucket}`,
-	messagingSenderId: `${process.env.NEXT_PUBLIC_Message_Sender_Id}`,
-	appId: `${process.env.NEXT_PUBLIC_App_Id}`
+const firebaseConfig = {
+	// update credentials here
 };
 
 let fire;
 
-if (!firebase.apps.length) {
-	fire = firebase.initializeApp(firebaseConfig);
+if (!getApps().length) {
+	// Initialize the Firebase app if it doesn't exist
+	fire = initializeApp(firebaseConfig);
 } else {
-	fire = firebase.app();
+	// If the app already exists, get a reference to it
+	fire = getApp();
 }
 
 export default fire;

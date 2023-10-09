@@ -5,8 +5,12 @@ import { AuthContext } from '../context/AuthContext';
 import { JobContext } from '../context/JobContext';
 import fire from '../../utils/firebase';
 import styles from '../../styles/nav.module.css';
+import { getAuth, signOut } from "firebase/auth";
+
 
 const Nav = () => {
+	const auth = getAuth();
+
 	const {
 		hasSignedIn: val,
 		setHasSignedIn: setVal,
@@ -26,12 +30,15 @@ const Nav = () => {
 	 * log out user from the system
 	 */
 	const handleLogout = () => {
-		fire.auth().signOut();
-		setHasSignedIn(false);
-		setVal(false);
-		setUserJobs([]);
-		localStorage.setItem('hasSignedIn', false);
-		localStorage.setItem('email', null);
+		signOut(auth).then(() => {
+			setHasSignedIn(false);
+			setVal(false);
+			setUserJobs([]);
+			localStorage.setItem('hasSignedIn', false);
+			localStorage.setItem('email', null);
+		}).catch((error) => {
+			console.log(error);
+		});
 	};
 
 	return (
@@ -39,14 +46,14 @@ const Nav = () => {
 			<div className={styles.main_container}>
 				<div className={styles.img_container}>
 					<Link href="/">
-						<a>
+						<>
 							<Image
 								src="/logo.png"
 								alt="jobboard"
 								width={200}
 								height={70}
 							/>
-						</a>
+						</>
 					</Link>
 				</div>
 				<div className={styles.links_container}>
@@ -54,12 +61,12 @@ const Nav = () => {
 						<>
 							<Link href="/login">
 								<div className={styles.links}>
-									<a>Login</a>
+									<>Login</>
 								</div>
 							</Link>
 							<Link href="/signup">
 								<div className={styles.links}>
-									<a>Sign Up</a>
+									<>Sign Up</>
 								</div>
 							</Link>
 						</>
@@ -67,7 +74,7 @@ const Nav = () => {
 						<>
 							<Link href="/dashboard">
 								<div className={styles.links}>
-									<a>Dashboard</a>
+									<>Dashboard</>
 								</div>
 							</Link>
 							<Link href="/">
@@ -75,7 +82,7 @@ const Nav = () => {
 									className={styles.links}
 									onClick={handleLogout}
 								>
-									<a>Logout</a>
+									<>Logout</>
 								</div>
 							</Link>
 						</>
@@ -85,16 +92,16 @@ const Nav = () => {
 						{val ? (
 							isOrg ? (
 								<Link href="/hire">
-									<a>
+									<>
 										<button>Post a Job</button>
-									</a>
+									</>
 								</Link>
 							) : null
 						) : (
 							<Link href="/login">
-								<a>
+								<>
 									<button>Post a Job</button>
-								</a>
+								</>
 							</Link>
 						)}
 					</div>

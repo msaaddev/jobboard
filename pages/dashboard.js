@@ -6,6 +6,9 @@ import Job from '../components/common/Job';
 import { AuthContext } from '../components/context/AuthContext';
 import { JobContext } from '../components/context/JobContext';
 import styles from '../styles/dashboard.module.css';
+import { getAuth, onAuthStateChanged } from 'firebase/auth';
+import { getFirestore, collection, getDocs } from 'firebase/firestore';
+
 
 const Dashbaord = () => {
 	const { email, setHasSignedIn, setIsOrg: flag } = useContext(AuthContext);
@@ -14,6 +17,8 @@ const Dashbaord = () => {
 	const [orgMsg, setOrgMsg] = useState('');
 	const [usrMsg, setUsrMsg] = useState('');
 	const router = useRouter();
+	const auth = getAuth(fire);
+	const db = getFirestore(fire);
 
 	useEffect(() => {
 		if (typeof window !== undefined) {
@@ -23,23 +28,64 @@ const Dashbaord = () => {
 				router.push('/');
 			} else {
 				const eml = localStorage.getItem('email');
-				const db = fire.firestore();
+				// const db = fire.firestore();
+				// db.collection('users')
 
 				setOrgMsg('Loading...');
 				setUsrMsg('Loading...');
-				db.collection('users')
-					.doc(eml)
-					.onSnapshot((doc) => {
-						const org = doc.data().isOrg;
-						const jobs = doc.data().jobList;
+				// db.collection('users')
+				// 	.doc(eml)
+				// 	.onSnapshot((doc) => {
+				// 		const org = doc.data().isOrg;
+				// 		const jobs = doc.data().jobList;
+				// 		setIsOrg(org);
+				// 		flag(org);
+				// 		setUserJobs(jobs);
+				// 		setOrgMsg(
+				// 			'No jobs from your organization has been posted yet.'
+				// 		);
+				// 		setUsrMsg('You have not applied to any jobs yet...');
+				// 	});
+
+				// const usersCol = collection(db, 'users');
+				// const userSnapshot = getDocs(usersCol);
+				// const userList = userSnapshot?.docs?.map((doc) => doc.data());
+				// console.log(userList);
+				// const user = userList?.filter((user) => user.email === eml);
+				// console.log(user);
+				// const org = user[0].isOrg;
+				// const jobs = user[0].jobList;
+				// setIsOrg(org);
+				// flag(org);
+				// setUserJobs(jobs);
+				// setOrgMsg(
+				// 	'No jobs from your organization has been posted yet.'
+				// );
+				// setUsrMsg('You have not applied to any jobs yet...');
+
+				async function getUser() {
+					const usersCol = collection(db, 'users');
+					const userSnapshot = await getDocs(usersCol);
+					const userList = userSnapshot.docs.map((doc) => doc.data());
+					return userList;
+				}
+
+				getUser().then((userList) => {
+					const user = userList.filter((user) => user.email === eml);
+					if (user.length !== 0) {
+						const org = user[0].isOrg;
+						const jobs = user[0].jobList;
 						setIsOrg(org);
 						flag(org);
 						setUserJobs(jobs);
-						setOrgMsg(
-							'No jobs from your organization has been posted yet.'
-						);
-						setUsrMsg('You have not applied to any jobs yet...');
-					});
+					}
+					setOrgMsg(
+						'No jobs from your organization has been posted yet.'
+					);
+					setUsrMsg('You have not applied to any jobs yet...');
+				});
+
+				// setJobs([]);
 
 				setHasSignedIn(true);
 			}

@@ -16,7 +16,7 @@ const Jobs = ({ label, jobs }) => {
 								key={job.id}
 								letter={job.companyName[0]}
 								title={job.jobTitle}
-								date={job.date}
+								// date={job.date}
 								company={job.companyName}
 								location={job.jobArea}
 							/>
