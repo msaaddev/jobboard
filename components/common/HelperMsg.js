@@ -8,7 +8,7 @@ const HelperMsg = ({ content, option, url }) => {
 				{content}{' '}
 				<span>
 					<Link href={`/${url}`}>
-						<a>{option}</a>
+						<>{option}</>
 					</Link>
 				</span>
 			</p>

@@ -7,6 +7,8 @@ import Input from '../components/common/Input';
 import HelperMsg from '../components/common/HelperMsg';
 import Button from '../components/common/Button';
 import styles from '../styles/auth.module.css';
+import { getAuth, signInWithEmailAndPassword, onAuthStateChanged } from "firebase/auth";
+import { getFirestore, collection, doc, getDoc } from "firebase/firestore";
 
 const Login = () => {
 	const { user, setUser } = useContext(AuthContext);
@@ -18,6 +20,8 @@ const Login = () => {
 	const { setIsOrg } = useContext(AuthContext);
 	const { userJobs, setUserJobs } = useContext(JobContext);
 	const router = useRouter();
+	const auth = getAuth(fire);
+	const db = getFirestore(fire);
 
 	/**
 	 *
@@ -39,38 +43,38 @@ const Login = () => {
 		setPasswordErr('');
 	};
 
-	/**
-	 *
-	 *
-	 * logs in the systems
-	 */
+
 	const handleLogin = async () => {
 		clearErrs();
-		const db = fire.firestore();
 
-		fire.auth()
-			.signInWithEmailAndPassword(email, password)
-			.then(() => {
+		try {
+			const userCredential = await signInWithEmailAndPassword(auth, email, password);
+			const user = userCredential.user;
+			if (user) {
 				setHasSignedIn(true);
 				localStorage.setItem('hasSignedIn', true);
 				localStorage.setItem('email', email);
 				router.push('/dashboard');
-			})
-			.catch((err) => {
-				const { code, message } = err;
+			} else {
+				console.error('User document does not exist.');
+			}
+		} catch (error) {
+			const errorCode = error.code;
+			const errorMessage = error.message;
+			console.log(error.code);
 
-				if (
-					code === 'auth/invalid-email' ||
-					code === 'auth/user-disabled' ||
-					code === 'auth/user-not-found'
-				) {
-					setEmailErr(message);
-				}
+			if (
+				errorCode === 'auth/invalid-login-credentials' ||
+				errorCode === 'auth/invalid-email'
+			) {
+				setEmailErr(errorMessage);
+			}
 
-				if (code === 'auth/wrong-password') {
-					setPasswordErr(message);
-				}
-			});
+			if (errorCode === 'auth/weak-password') {
+				setPasswordErr(errorMessage);
+			}
+		}
+
 	};
 
 	/**
@@ -79,9 +83,21 @@ const Login = () => {
 	 * checks where the user is logged in or not
 	 */
 	const authListener = () => {
-		fire.auth().onAuthStateChanged((user) => {
+		// fire.auth().onAuthStateChanged((user) => {
+		// 	if (user) {
+		// 		setUser(user);
+		// 	} else {
+		// 		setUser('');
+		// 	}
+		// });
+
+		onAuthStateChanged(auth, (user) => {
 			if (user) {
 				setUser(user);
+				setHasSignedIn(true);
+				localStorage.setItem('hasSignedIn', true);
+				localStorage.setItem('email', email);
+				router.push('/dashboard');
 			} else {
 				setUser('');
 			}
@@ -89,7 +105,7 @@ const Login = () => {
 	};
 
 	useEffect(() => {
-		authListener();
+		// authListener();
 		if (hasSignedIn) {
 			router.push('/dashboard');
 		}

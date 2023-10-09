@@ -161,10 +161,10 @@ const Preview = ({ mainPreview = false }) => {
 			</div>
 			<div className={styles.company}>
 				<h2>About {companyName}</h2>
-				<a href={companyWebsite}>Visit website</a>
+				<Link href={companyWebsite}>Visit website</Link>
 				<br />
 				<br />
-				<a href={`mailto:${companyEmail}`}>Email them</a>
+				<Link href={`mailto:${companyEmail}`}>Email them</Link>
 				<h3>Description</h3>
 				<div className={styles.description}>
 					<p>{companyDescription}</p>
@@ -176,9 +176,9 @@ const Preview = ({ mainPreview = false }) => {
 				)}
 				{mainPreview && (
 					<Link href={`mailto:${jobLink}`}>
-						<a>
+						<>
 							<Button label="Apply" onClick={handleApply} />
-						</a>
+						</>
 					</Link>
 				)}
 			</div>
